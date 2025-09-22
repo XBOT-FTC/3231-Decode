@@ -26,13 +26,25 @@ public class Vision extends LinearOpMode {
         VisionPortal visionPortal = new VisionPortal.Builder()
                 .addProcessor(tagProcessor)
                 .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
-                .setCameraResolution(new Size(1920, 1080))
-                .build();
+                .setCameraResolution(new Size(1280, 720))
+                        .build();
+
+        waitForStart();
 
 
         while (!isStopRequested() && opModeIsActive()){
             if (tagProcessor.getDetections().size() > 0){
                 AprilTagDetection tag = tagProcessor.getDetections().get(0);
+
+                telemetry.addData("x", tag.ftcPose.x);
+                telemetry.addData("y", tag.ftcPose.y);
+                telemetry.addData("z", tag.ftcPose.z);
+                telemetry.addData("elevation", tag.ftcPose.elevation);
+                telemetry.addData("roll", tag.ftcPose.roll);
+                telemetry.addData("range", tag.ftcPose.range);
+                telemetry.addData("bearing", tag.ftcPose.bearing);
+                telemetry.addData("yaw", tag.ftcPose.yaw);
+                telemetry.addData("elevation", tag.ftcPose.elevation);
             }
         }
     }
