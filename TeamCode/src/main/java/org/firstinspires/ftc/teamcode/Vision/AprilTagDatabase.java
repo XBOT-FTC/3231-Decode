@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.VisionStuff;
+package org.firstinspires.ftc.teamcode.Vision;
 
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
