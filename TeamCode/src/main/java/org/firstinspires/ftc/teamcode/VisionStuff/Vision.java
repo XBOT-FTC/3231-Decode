@@ -8,10 +8,14 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
+import org.firstinspires.ftc.vision.apriltag.AprilTagLibrary;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
+
 
 @TeleOp
 public class Vision extends LinearOpMode {
+    VisionPortal visionPortal;
+
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -22,11 +26,18 @@ public class Vision extends LinearOpMode {
                 .setDrawTagOutline(true)
                 .build();
 
-        VisionPortal visionPortal = new VisionPortal.Builder()
-                .addProcessor(tagProcessor)
-                .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
-                .setCameraResolution(new Size(1280, 720))
-                        .build();
+        VisionPortal.Builder VisionPortalBuilder;
+        VisionPortalBuilder = new VisionPortal.Builder();
+
+        VisionPortalBuilder.addProcessor(tagProcessor);
+        VisionPortalBuilder.setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"));
+        VisionPortalBuilder.setCameraResolution(new Size(1280, 720));
+        VisionPortalBuilder.setStreamFormat(VisionPortal.StreamFormat.MJPEG);
+        VisionPortalBuilder.enableLiveView(true);
+        VisionPortalBuilder.setAutoStartStreamOnBuild(true);
+        VisionPortalBuilder.setShowStatsOverlay(true);
+
+        visionPortal = VisionPortalBuilder.build();
 
         waitForStart();
 
@@ -45,6 +56,7 @@ public class Vision extends LinearOpMode {
                 telemetry.addData("yaw", tag.ftcPose.yaw);
                 telemetry.addData("elevation", tag.ftcPose.elevation);
             }
+            telemetry.update();
         }
     }
 
