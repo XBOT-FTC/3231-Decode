@@ -8,6 +8,21 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 @TeleOp(name = "Shooter", group = "LinearOpMode")
 public class Shooter extends LinearOpMode {
+    //Shooters start at 10% power
+    double leftShooterPower = .1;
+    double rightShooterPower = .1;
+    public void increasePower() {
+        leftShooterPower = leftShooterPower + 0.1;
+        rightShooterPower = rightShooterPower + 0.1;
+        leftShooterPower = Math.min(leftShooterPower, 1.0);
+        rightShooterPower = Math.min(rightShooterPower, 1.0);
+    }
+    public void decreasePower() {
+        leftShooterPower = leftShooterPower - 0.1;
+        rightShooterPower = rightShooterPower - 0.1;
+        leftShooterPower = Math.max(leftShooterPower, 0);
+        rightShooterPower = Math.max(rightShooterPower, 0);
+    }
     @Override
     public void runOpMode() throws InterruptedException {
         DcMotor leftShooterMotor = hardwareMap.dcMotor.get("leftShooterMotor");
@@ -16,10 +31,6 @@ public class Shooter extends LinearOpMode {
         rightShooterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
-
-        //Shooters start at 10% power
-        double leftShooterPower = .1;
-        double rightShooterPower = .1;
 
         if (isStopRequested()) return;
 
@@ -46,22 +57,13 @@ public class Shooter extends LinearOpMode {
 
             //Shooter power increases by 10% everytime Dpad up is pressed
             if (currentGamepad1.dpad_up && !previousGamepad1.dpad_up) {
-                leftShooterPower = leftShooterPower + 0.1;
-                rightShooterPower = rightShooterPower +0.1;
+                increasePower();
             }
 
             //Shooter power decreases by 10% everytime Dpad down is pressed
             if (currentGamepad1.dpad_down && !previousGamepad1.dpad_down) {
-                leftShooterPower = leftShooterPower - 0.1;
-                rightShooterPower = rightShooterPower - 0.1;
+                decreasePower();
             }
-
-            //The highest the shooter power can go is 100%
-            leftShooterPower = Math.min(leftShooterPower, 1.0);
-            rightShooterPower = Math.min(rightShooterPower, 1.0);
-            //The lowest the shooter power can go is 0%
-            leftShooterPower = Math.max(leftShooterPower, 0);
-            rightShooterPower = Math.max(rightShooterPower, 0);
 
             telemetry.addData("motors", "leftShooter(%.2f) rightShooter(%.2f)", leftShooterPower, rightShooterPower);
             telemetry.update();
