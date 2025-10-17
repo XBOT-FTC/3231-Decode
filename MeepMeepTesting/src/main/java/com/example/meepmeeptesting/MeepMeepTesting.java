@@ -10,7 +10,7 @@ public class MeepMeepTesting {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(800);
 
-        int startPoseX = 57;
+        int startPoseX = 58; //SmallTriangleAuto = 58
         int startPoseY = 0;
         int startPoseZ = 0;
 
