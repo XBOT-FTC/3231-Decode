@@ -12,8 +12,6 @@ import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 @Autonomous(name = "SmallTriangleAuto", group = "Autonomous")
 public class SmallTriangleAuto {
-
-
     public void runOpMode(){
         Pose2d startingPose = new Pose2d(58, 0, Math.toRadians(0));
 
@@ -48,8 +46,6 @@ public class SmallTriangleAuto {
                 .strafeToSplineHeading(new Vector2d(-34,38),Math.toRadians(140))
                 
                 .build();
-
-
     }
 
 }
