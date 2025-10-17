@@ -5,67 +5,67 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
-@TeleOp(name = "Shooter", group = "LinearOpMode")
-public class Shooter extends LinearOpMode {
-    //Shooters start at 10% power
-    double leftShooterPower = .1;
-    double rightShooterPower = .1;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
+//Shooter class
+public class Shooter {
+    private final DcMotor leftShooterMotor;
+    private final DcMotor rightShooterMotor;
+    //Shooters starting power constants
+    public double leftShooterPower = Constants.leftShooterPower;
+    public double rightShooterPower = Constants.rightShooterPower;
+
+    //Shooter power increase function
     public void increasePower() {
-        leftShooterPower = leftShooterPower + 0.1;
-        rightShooterPower = rightShooterPower + 0.1;
-        leftShooterPower = Math.min(leftShooterPower, 1.0);
-        rightShooterPower = Math.min(rightShooterPower, 1.0);
+        this.leftShooterPower = leftShooterPower + 0.1;
+        this.rightShooterPower = rightShooterPower + 0.1;
+        this.leftShooterPower = Math.min(leftShooterPower, 1.0);
+        this.rightShooterPower = Math.min(rightShooterPower, 1.0);
     }
+
+    //Shooter power decrease function
     public void decreasePower() {
-        leftShooterPower = leftShooterPower - 0.1;
-        rightShooterPower = rightShooterPower - 0.1;
-        leftShooterPower = Math.max(leftShooterPower, 0);
-        rightShooterPower = Math.max(rightShooterPower, 0);
+        this.leftShooterPower = leftShooterPower - 0.1;
+        this.rightShooterPower = rightShooterPower - 0.1;
+        this.leftShooterPower = Math.max(leftShooterPower, 0);
+        this.rightShooterPower = Math.max(rightShooterPower, 0);
     }
-    @Override
-    public void runOpMode() throws InterruptedException {
-        DcMotor leftShooterMotor = hardwareMap.dcMotor.get("leftShooterMotor");
-        DcMotor rightShooterMotor = hardwareMap.dcMotor.get("rightShooterMotor");
 
-        rightShooterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        waitForStart();
-
-        if (isStopRequested()) return;
-
-        Gamepad currentGamepad1 = new Gamepad();
-        Gamepad previousGamepad1 = new Gamepad();
-
-        while (opModeIsActive()) {
-            //The Y button is for shooting
-            //Use the Dpad to change the speed of the motors
-            boolean shoot = gamepad1.y;
-            boolean more = gamepad1.dpad_up;
-            boolean less = gamepad1.dpad_down;
-
-            previousGamepad1.copy(currentGamepad1);
-            currentGamepad1.copy(gamepad1);
-
-            if (shoot == true) {
-                leftShooterMotor.setPower(leftShooterPower);
-                rightShooterMotor.setPower(rightShooterPower);
-            }else {
-                leftShooterMotor.setPower(0);
-                rightShooterMotor.setPower(0);
-            }
-
-            //Shooter power increases by 10% everytime Dpad up is pressed
-            if (currentGamepad1.dpad_up && !previousGamepad1.dpad_up) {
-                increasePower();
-            }
-
-            //Shooter power decreases by 10% everytime Dpad down is pressed
-            if (currentGamepad1.dpad_down && !previousGamepad1.dpad_down) {
-                decreasePower();
-            }
-
-            telemetry.addData("motors", "leftShooter(%.2f) rightShooter(%.2f)", leftShooterPower, rightShooterPower);
-            telemetry.update();
+    //Constant for shooter motors stop
+    public void setZero(DcMotor motor) {
+        motor.setPower(0);
     }
-}}
+
+    public void setMotorPower(DcMotor motor, double power) {
+        motor.setPower(power);
+    }
+
+    public Shooter(HardwareMap hardwareMap, Telemetry telemetry) {
+        this.leftShooterMotor = hardwareMap.dcMotor.get(Constants.leftShooterMotor());
+        this.rightShooterMotor = hardwareMap.dcMotor.get(Constants.rightShooterMotor());
+        this.rightShooterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+    }
+
+    //Return shooter motors and powers
+    public DcMotor getLeftShooterMotor() {
+        return this.leftShooterMotor;
+    }
+
+    public DcMotor getRightShooterMotor() {
+        return this.rightShooterMotor;
+    }
+
+    public double getLeftShooterPower() {
+        return leftShooterPower;
+    }
+
+    public double getRightShooterPower() {
+        return rightShooterPower;
+    }
+
+
+          //  telemetry.addData("motors", "leftShooter(%.2f) rightShooter(%.2f)", leftShooterPower, rightShooterPower);
+          //  telemetry.update();
+    }
