@@ -11,8 +11,8 @@ public class MeepMeepTesting {
         MeepMeep meepMeep = new MeepMeep(800);
 
         double startPoseX = -56; //SmallTriangleAuto = 58
-        double startPoseY = 45;
-        double startPoseZ = 0;
+        double startPoseY = 45; //SmallTriangleAuto = 0
+        double startPoseZ = 0; // SmallTriangleAuto = 0
         double minYValue = 31;
         double maxYValue = 54;
 
