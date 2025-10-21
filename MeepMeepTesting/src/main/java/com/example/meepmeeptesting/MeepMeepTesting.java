@@ -45,7 +45,7 @@ public class MeepMeepTesting {
 }
 
 
-/* SmallTriangleAuto right here:
+/* Red SmallTriangleAuto right here:
 
 
                 .turn(Math.toRadians(150))
@@ -75,7 +75,7 @@ public class MeepMeepTesting {
                 .turn(Math.toRadians(90))
 
 
-                Main auto code here:
+                Red main auto code here:
                                 .turnTo(Math.toRadians(127))
                                 .waitSeconds(6)
                                 .strafeToSplineHeading(new Vector2d(-20,minYValue), Math.toRadians(90))
@@ -100,4 +100,3 @@ public class MeepMeepTesting {
 
 
 
-                 

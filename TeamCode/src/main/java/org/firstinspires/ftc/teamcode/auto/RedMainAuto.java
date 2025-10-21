@@ -11,14 +11,14 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 @Autonomous(name = "SmallTriangleAuto", group = "Autonomous")
-public class MainAuto {
+public class RedMainAuto {
 
     double startPoseX = -56; //SmallTriangleAuto = 58
     double startPoseY = 45; //SmallTriangleAuto = 0
     double minYValue = 31;
     double maxYValue = 54;
     public void runOpMode(){
-        Pose2d startingPose = new Pose2d(-56, 40, Math.toRadians(0));
+        Pose2d startingPose = new Pose2d(-startPoseX, startPoseY, Math.toRadians(0));
 
         MecanumDrive drive = new MecanumDrive(hardwareMap, startingPose);
 

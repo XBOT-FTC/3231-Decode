@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 @Autonomous(name = "SmallTriangleAuto", group = "Autonomous")
-public class SmallTriangleAuto {
+public class RedSmallTriangleAuto {
     public void runOpMode(){
         Pose2d startingPose = new Pose2d(58, 0, Math.toRadians(0));
 
