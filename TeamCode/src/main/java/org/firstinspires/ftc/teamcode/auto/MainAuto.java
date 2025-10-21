@@ -23,23 +23,24 @@ public class MainAuto {
         MecanumDrive drive = new MecanumDrive(hardwareMap, startingPose);
 
         Action trajectoryAction = drive.actionBuilder(startingPose)
-                .waitSeconds(6)
-                .strafeToSplineHeading(new Vector2d(-20,minYValue), Math.toRadians(90))
+                .waitSeconds(6) //Replace this with shoot code
 
+                .strafeToSplineHeading(new Vector2d(-20,minYValue), Math.toRadians(90))
+                //Start intake
                 .splineToConstantHeading(new Vector2d(-11,maxYValue),Math.toRadians(90))
 
                 .strafeToSplineHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(127))
-
-                .waitSeconds(6)
+                //stop intake
+                .waitSeconds(6) //Replace this with the shoot code
 
                 .strafeToSplineHeading(new Vector2d(3,minYValue), Math.toRadians(90))
-
+                //Start intake
                 .splineToConstantHeading(new Vector2d(12,maxYValue),Math.toRadians(90))
 
                 .strafeToSplineHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(127))
+                //stop intake
+                .waitSeconds(6) //Replace this shooter code
 
-                .waitSeconds(6)
-                
                 .build();
     }
 

@@ -74,3 +74,55 @@ public class MeepMeepTesting {
                 .start();
     }
 }
+
+
+/* SmallTriangleAuto right here:
+
+
+                .turn(Math.toRadians(150))
+                .waitSeconds(1)
+                .splineTo(new Vector2d(35,56),Math.toRadians(90))
+                .waitSeconds(1)
+                .strafeToLinearHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(150))
+                .waitSeconds(1)
+                .splineTo(new Vector2d(12,56),Math.toRadians(90))
+                .waitSeconds(1)
+                .strafeToSplineHeading(new Vector2d(-11,0),Math.toRadians(135))
+                .waitSeconds(1)
+                .turnTo(Math.toRadians(90))
+                .strafeToSplineHeading(new Vector2d(-11,56), Math.toRadians(90))
+                .waitSeconds(1)
+                .strafeToSplineHeading(new Vector2d(-34,38),Math.toRadians(140))*/
+
+//.splineToLinearHeading(new Pose2d(40, 40, Math.toRadians(90)), Math.toRadians(0))
+//.splineTo(new Vector2d(-16,60),1)
+
+                /*.turn(Math.toRadians(90))
+                .lineToY(30)
+                .turn(Math.toRadians(90))
+                .lineToX(0)
+                .turn(Math.toRadians(90))
+                .lineToY(0)
+                .turn(Math.toRadians(90))
+
+
+                Main auto code here:
+                                .turnTo(Math.toRadians(127))
+                                .waitSeconds(6)
+                                .strafeToSplineHeading(new Vector2d(-20,minYValue), Math.toRadians(90))
+                                .splineToConstantHeading(new Vector2d(-11,maxYValue),Math.toRadians(90))
+                                .strafeToSplineHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(127))
+                                .waitSeconds(6)
+                                .strafeToSplineHeading(new Vector2d(3,minYValue), Math.toRadians(90))
+                                .splineToConstantHeading(new Vector2d(12,maxYValue),Math.toRadians(90))
+                                .strafeToSplineHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(127))
+                                .waitSeconds(6)
+
+
+
+
+
+
+
+
+                 */
