@@ -8,33 +8,19 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 @TeleOp(name = "2025TeleOp", group="Linear OpMode")
 public class MecanumTeleOp extends LinearOpMode {
-    //Shooters start at 10% power
-    double leftShooterPower = .1;
-    double rightShooterPower = .1;
-    public void increasePower() {
-        leftShooterPower = leftShooterPower + 0.1;
-        rightShooterPower = rightShooterPower + 0.1;
-        leftShooterPower = Math.min(leftShooterPower, 1.0);
-        rightShooterPower = Math.min(rightShooterPower, 1.0);
-    }
-    public void decreasePower() {
-        leftShooterPower = leftShooterPower - 0.1;
-        rightShooterPower = rightShooterPower - 0.1;
-        leftShooterPower = Math.max(leftShooterPower, 0);
-        rightShooterPower = Math.max(rightShooterPower, 0);
-    }
+
+
     @Override
     public void runOpMode() throws InterruptedException {
-        DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeftMotor");
-        DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeftMotor");
-        DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRightMotor");
-        DcMotor backRightMotor = hardwareMap.dcMotor.get("backRightMotor");
-        DcMotor leftShooterMotor = hardwareMap.dcMotor.get("leftShooterMotor");
-        DcMotor rightShooterMotor = hardwareMap.dcMotor.get("rightShooterMotor");
+        DcMotor frontLeftMotor = hardwareMap.dcMotor.get(Constants.leftFrontDriveMotor());
+        DcMotor backLeftMotor = hardwareMap.dcMotor.get(Constants.leftBackDriveMotor());
+        DcMotor frontRightMotor = hardwareMap.dcMotor.get(Constants.rightFrontDriveMotor());
+        DcMotor backRightMotor = hardwareMap.dcMotor.get(Constants.rightBackDriveMotor());
 
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightShooterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        Shooter shooter = new Shooter(hardwareMap,telemetry);
 
         waitForStart();
 
@@ -53,6 +39,7 @@ public class MecanumTeleOp extends LinearOpMode {
             previousGamepad1.copy(currentGamepad1);
             currentGamepad1.copy(gamepad1);
 
+            //Drive Code
             double y = -gamepad1.left_stick_y;
             double x = gamepad1.left_stick_x * 1.1;
             double rx = -gamepad1.right_stick_x;
@@ -63,22 +50,23 @@ public class MecanumTeleOp extends LinearOpMode {
             double frontRightPower = (y - x - rx) / denominator;
             double backRightPower = (y + x - rx) / denominator;
 
+            //Shooting Code
             if (shoot == true) {
-                leftShooterMotor.setPower(leftShooterPower);
-                rightShooterMotor.setPower(rightShooterPower);
+                shooter.setMotorPower(shooter.getLeftShooterMotor(), shooter.getLeftShooterPower());
+                shooter.setMotorPower(shooter.getRightShooterMotor(), shooter.getRightShooterPower());
             }else {
-                leftShooterMotor.setPower(0);
-                rightShooterMotor.setPower(0);
+                shooter.setZero(shooter.getLeftShooterMotor());
+                shooter.setZero(shooter.getRightShooterMotor());
             }
 
             //Shooter power increases by 10% everytime Dpad up is pressed
             if (currentGamepad1.dpad_up && !previousGamepad1.dpad_up) {
-                increasePower();
+                shooter.increasePower();
             }
 
             //Shooter power decreases by 10% everytime Dpad down is pressed
             if (currentGamepad1.dpad_down && !previousGamepad1.dpad_down) {
-                decreasePower();
+                shooter.decreasePower();
             }
 
             frontLeftMotor.setPower(frontLeftPower);
@@ -86,7 +74,8 @@ public class MecanumTeleOp extends LinearOpMode {
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
 
-            telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f) leftShooter(%.2f) rightShooter(%.2f)", frontLeftPower, frontRightPower, backLeftPower, backRightPower, leftShooterPower, rightShooterPower);
+            //Telemetry for movement motors and shooters
+            telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f) leftShooter(%.2f) rightShooter(%.2f)", frontLeftPower, frontRightPower, backLeftPower, backRightPower, shooter.getLeftShooterPower(), shooter.getRightShooterPower());
             telemetry.update();
         }
     }
