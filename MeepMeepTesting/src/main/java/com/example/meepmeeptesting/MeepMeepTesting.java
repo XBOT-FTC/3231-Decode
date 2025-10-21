@@ -17,8 +17,34 @@ public class MeepMeepTesting {
 
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(68, -10, 0))
-                .splineTo(new Vector2d(38, -32), Math.toRadians(90))
-                .splineTo(new Vector2d(-40, -34), Math.toRadians(-15))
+                .splineTo(new Vector2d(-40, -34), Math.toRadians(-150))
+                .waitSeconds(6)
+                .strafeToLinearHeading(new Vector2d(-13, -30), Math.toRadians(90))
+                .lineTo
+
+                //.splineTo(new Vector2d(38, -32), Math.toRadians(90))
+                //.waitSeconds(3)
+                /*.splineTo(new Vector2d(-40, -34), Math.toRadians(-150))
+                .waitSeconds(6)
+                .splineTo(new Vector2d(38, -30), Math.toRadians(-90))
+                .turn(Math.toRadians(180))
+                .waitSeconds(4)
+                .splineTo(new Vector2d(-40, -34), Math.toRadians(-150))
+                .waitSeconds(6)
+                .splineTo(new Vector2d(12, -30), Math.toRadians(-90))
+                .turn(Math.toRadians(180))
+                .waitSeconds(4)
+                .splineTo(new Vector2d(-40, -34), Math.toRadians(-150))
+                .waitSeconds(6)
+                .splineTo(new Vector2d(-14, -30), Math.toRadians(-90))
+                .turn(Math.toRadians(180))
+                .waitSeconds(4)
+                .splineTo(new Vector2d(-40, -34), Math.toRadians(-150))
+                .waitSeconds(6)
+                .splineTo(new Vector2d(38, -32), Math.toRadians(-90))
+                .turn(Math.toRadians(180))*/
+
+
                 /*.lineToX(-20)
                 .turn(Math.toRadians(220))
                 .lineToY(-24)
