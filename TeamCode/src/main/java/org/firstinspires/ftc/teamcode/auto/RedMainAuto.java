@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
-@Autonomous(name = "SmallTriangleAuto", group = "Autonomous")
+@Autonomous(name = "RedMainAuto", group = "Autonomous")
 public class RedMainAuto {
 
     double startPoseX = -56; //SmallTriangleAuto = 58
