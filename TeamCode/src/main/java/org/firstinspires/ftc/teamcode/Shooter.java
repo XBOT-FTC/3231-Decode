@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 //Shooter class
@@ -65,6 +64,27 @@ public class Shooter {
         return rightShooterPower;
     }
 
+    public void shooter10() {
+        //leftShooterMotor.setPower(leftShooterPower);
+        //rightShooterMotor.setPower(rightShooterPower);
+        this.leftShooterPower = 0.1;
+        this.rightShooterPower = 0.1;
+    }
+
+    public void shooter30() {
+        this.leftShooterPower = 0.3;
+        this.rightShooterPower= 0.3;
+    }
+
+    public void shooter50() {
+        this.leftShooterPower = 0.5;
+        this.rightShooterPower = 0.5;
+    }
+
+    public void shooter70() {
+        this.leftShooterPower = 0.7;
+        this.rightShooterPower = 0.7;
+    }
 
           //  telemetry.addData("motors", "leftShooter(%.2f) rightShooter(%.2f)", leftShooterPower, rightShooterPower);
           //  telemetry.update();
