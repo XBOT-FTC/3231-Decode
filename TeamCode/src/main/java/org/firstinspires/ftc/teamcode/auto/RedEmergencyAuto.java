@@ -20,7 +20,7 @@ public class RedEmergencyAuto {
         MecanumDrive drive = new MecanumDrive(hardwareMap, startingPose);
 
         Action trajectoryAction = drive.actionBuilder(startingPose)
-                .strafeToLinearHeading(new Vector2d(-34,52), Math.toRadians(127))
+                .strafeToLinearHeading(new Vector2d(-31,48), Math.toRadians(127))
                 .build();
     }
 

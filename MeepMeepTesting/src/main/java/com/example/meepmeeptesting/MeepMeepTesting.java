@@ -22,10 +22,9 @@ public class MeepMeepTesting {
                 .setStartPose(new Pose2d(startPoseX,startPoseY, Math.toRadians(127)))
                 .build();
 
-
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(startPoseX, startPoseY, startPoseZ))
                         .turn(Math.toRadians(127))
-                .strafeToLinearHeading(new Vector2d(-34,52), Math.toRadians(127))
+                .strafeToLinearHeading(new Vector2d(-31,48), Math.toRadians(127))
                 .build());
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_DECODE_JUICE_DARK)
