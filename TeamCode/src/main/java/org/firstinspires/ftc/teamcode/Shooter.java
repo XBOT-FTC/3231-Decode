@@ -16,6 +16,12 @@ public class Shooter {
     public double leftShooterPower = Constants.leftShooterPower;
     public double rightShooterPower = Constants.rightShooterPower;
 
+    public Shooter(HardwareMap hardwareMap, Telemetry telemetry) {
+        this.leftShooterMotor = hardwareMap.dcMotor.get(Constants.leftShooterMotor());
+        this.rightShooterMotor = hardwareMap.dcMotor.get(Constants.rightShooterMotor());
+        this.rightShooterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+    }
+
     //Shooter power increase function
     public void increasePower() {
         this.leftShooterPower = leftShooterPower + 0.1;
@@ -41,12 +47,6 @@ public class Shooter {
         motor.setPower(power);
     }
 
-    public Shooter(HardwareMap hardwareMap, Telemetry telemetry) {
-        this.leftShooterMotor = hardwareMap.dcMotor.get(Constants.leftShooterMotor());
-        this.rightShooterMotor = hardwareMap.dcMotor.get(Constants.rightShooterMotor());
-        this.rightShooterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-    }
-
     //Return shooter motors and powers
     public DcMotor getLeftShooterMotor() {
         return this.leftShooterMotor;
@@ -65,8 +65,6 @@ public class Shooter {
     }
 
     public void shooter10() {
-        //leftShooterMotor.setPower(leftShooterPower);
-        //rightShooterMotor.setPower(rightShooterPower);
         this.leftShooterPower = 0.1;
         this.rightShooterPower = 0.1;
     }
@@ -85,7 +83,4 @@ public class Shooter {
         this.leftShooterPower = 0.7;
         this.rightShooterPower = 0.7;
     }
-
-          //  telemetry.addData("motors", "leftShooter(%.2f) rightShooter(%.2f)", leftShooterPower, rightShooterPower);
-          //  telemetry.update();
-    }
+}
