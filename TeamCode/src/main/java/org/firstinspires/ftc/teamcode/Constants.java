@@ -19,15 +19,11 @@ public class Constants {
         return "backRightMotor";
     }
 
-    public static String leftShooterMotor(){
-        return "leftShooterMotor";
+    public static String shooterMotor(){
+        return "shooterMotor";
     }
 
-    public static String rightShooterMotor(){
-        return "rightShooterMotor";
-    }
 
     //Shooter Constants
-    public static double leftShooterPower = .1;
-    public static double rightShooterPower = .1;
+    public static double shooterPower = .1;
 }
