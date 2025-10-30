@@ -1,4 +1,4 @@
-/*package org.firstinspires.ftc.teamcode.auto;
+package org.firstinspires.ftc.teamcode.auto;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 
@@ -6,17 +6,22 @@ import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
+
 @Autonomous(name = "RedMainAuto", group = "Autonomous")
-public class RedMainAuto {
+public class RedMainAuto extends LinearOpMode {
 
     double startPoseX = -56; //SmallTriangleAuto = 58
     double startPoseY = 45; //SmallTriangleAuto = 0
     double minYValue = 31;
     double maxYValue = 54;
+
+    @Override
     public void runOpMode(){
         Pose2d startingPose = new Pose2d(-startPoseX, startPoseY, Math.toRadians(0));
 
@@ -45,4 +50,3 @@ public class RedMainAuto {
     }
 
 }
-*/
