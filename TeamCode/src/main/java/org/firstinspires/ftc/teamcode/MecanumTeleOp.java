@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 
 @TeleOp(name = "2025TeleOp", group="Linear OpMode")
 public class MecanumTeleOp extends LinearOpMode {
@@ -20,8 +21,9 @@ public class MecanumTeleOp extends LinearOpMode {
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        Shooter shooter = new Shooter(hardwareMap,telemetry);
-
+        Shooter shooter = new Shooter(hardwareMap, telemetry);
+        ColorSensing colorSensor = new ColorSensing(hardwareMap, telemetry, "Test");
+        Intake intake = new Intake(hardwareMap, telemetry);
         waitForStart();
 
         if (isStopRequested()) return;
@@ -30,6 +32,8 @@ public class MecanumTeleOp extends LinearOpMode {
         Gamepad previousGamepad1 = new Gamepad();
 
         while (opModeIsActive()) {
+            colorSensor.updateTelemetry();
+
             //The Y button is for shooting
             //Use the Dpad to change the speed of the motors
             boolean wasYPressed = gamepad1.y;
@@ -78,11 +82,12 @@ public class MecanumTeleOp extends LinearOpMode {
             }
 
 
-
             frontLeftMotor.setPower(frontLeftPower);
             backLeftMotor.setPower(backLeftPower);
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
+            intake.run(currentGamepad1);
+            colorSensor.updateTelemetry();
 
             //Telemetry for movement motors and shooters
             telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f) leftShooter(%.2f) rightShooter(%.2f)", frontLeftPower, frontRightPower, backLeftPower, backRightPower, shooter.getLeftShooterPower(), shooter.getRightShooterPower());
