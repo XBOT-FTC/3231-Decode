@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 //Shooter class
@@ -16,6 +15,12 @@ public class Shooter {
     //Shooters starting power constants
     public double leftShooterPower = Constants.leftShooterPower;
     public double rightShooterPower = Constants.rightShooterPower;
+
+    public Shooter(HardwareMap hardwareMap, Telemetry telemetry) {
+        this.leftShooterMotor = hardwareMap.dcMotor.get(Constants.leftShooterMotor());
+        this.rightShooterMotor = hardwareMap.dcMotor.get(Constants.rightShooterMotor());
+        this.rightShooterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+    }
 
     //Shooter power increase function
     public void increasePower() {
@@ -42,12 +47,6 @@ public class Shooter {
         motor.setPower(power);
     }
 
-    public Shooter(HardwareMap hardwareMap, Telemetry telemetry) {
-        this.leftShooterMotor = hardwareMap.dcMotor.get(Constants.leftShooterMotor());
-        this.rightShooterMotor = hardwareMap.dcMotor.get(Constants.rightShooterMotor());
-        this.rightShooterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-    }
-
     //Return shooter motors and powers
     public DcMotor getLeftShooterMotor() {
         return this.leftShooterMotor;
@@ -65,7 +64,23 @@ public class Shooter {
         return rightShooterPower;
     }
 
-
-          //  telemetry.addData("motors", "leftShooter(%.2f) rightShooter(%.2f)", leftShooterPower, rightShooterPower);
-          //  telemetry.update();
+    public void shooter10() {
+        this.leftShooterPower = 0.1;
+        this.rightShooterPower = 0.1;
     }
+
+    public void shooter30() {
+        this.leftShooterPower = 0.3;
+        this.rightShooterPower= 0.3;
+    }
+
+    public void shooter50() {
+        this.leftShooterPower = 0.5;
+        this.rightShooterPower = 0.5;
+    }
+
+    public void shooter70() {
+        this.leftShooterPower = 0.7;
+        this.rightShooterPower = 0.7;
+    }
+}

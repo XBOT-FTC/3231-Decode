@@ -32,7 +32,10 @@ public class MecanumTeleOp extends LinearOpMode {
         while (opModeIsActive()) {
             //The Y button is for shooting
             //Use the Dpad to change the speed of the motors
-            boolean shoot = gamepad1.y;
+            boolean wasYPressed = gamepad1.y;
+            boolean wasXPressed = gamepad1.x;
+            boolean wasAPressed = gamepad1.a;
+            boolean wasBPressed = gamepad1.b;
             boolean more = gamepad1.dpad_up;
             boolean less = gamepad1.dpad_down;
 
@@ -51,10 +54,15 @@ public class MecanumTeleOp extends LinearOpMode {
             double backRightPower = (y + x - rx) / denominator;
 
             //Shooting Code
-            if (shoot == true) {
-                shooter.setMotorPower(shooter.getLeftShooterMotor(), shooter.getLeftShooterPower());
-                shooter.setMotorPower(shooter.getRightShooterMotor(), shooter.getRightShooterPower());
-            }else {
+            if (wasYPressed == true) {
+                shooter.shooter10();
+            } else if (wasXPressed == true) {
+                shooter.shooter30();
+            } else if (wasAPressed == true) {
+                shooter.shooter50();
+            } else if (wasBPressed == true) {
+                shooter.shooter70();
+            } else {
                 shooter.setZero(shooter.getLeftShooterMotor());
                 shooter.setZero(shooter.getRightShooterMotor());
             }
@@ -68,6 +76,8 @@ public class MecanumTeleOp extends LinearOpMode {
             if (currentGamepad1.dpad_down && !previousGamepad1.dpad_down) {
                 shooter.decreasePower();
             }
+
+
 
             frontLeftMotor.setPower(frontLeftPower);
             backLeftMotor.setPower(backLeftPower);
