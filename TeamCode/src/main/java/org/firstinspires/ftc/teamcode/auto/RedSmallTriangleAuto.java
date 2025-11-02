@@ -1,4 +1,4 @@
-/*package org.firstinspires.ftc.teamcode.auto;
+package org.firstinspires.ftc.teamcode.auto;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 
@@ -6,13 +6,15 @@ import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 @Autonomous(name = "RedSmallTriangleAuto", group = "Autonomous")
-public class RedSmallTriangleAuto {
+public class RedSmallTriangleAuto extends LinearOpMode {
 
+    @Override
     public void runOpMode(){
         Pose2d startingPose = new Pose2d(58, 0, Math.toRadians(0));
 
@@ -50,4 +52,3 @@ public class RedSmallTriangleAuto {
     }
 
 }
-*/

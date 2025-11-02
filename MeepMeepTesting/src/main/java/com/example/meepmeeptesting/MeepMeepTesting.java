@@ -22,18 +22,9 @@ public class MeepMeepTesting {
                 .setStartPose(new Pose2d(startPoseX,startPoseY, Math.toRadians(127)))
                 .build();
 
-
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(startPoseX, startPoseY, startPoseZ))
-                                .turnTo(Math.toRadians(127))
-                                .waitSeconds(6)
-                                .strafeToSplineHeading(new Vector2d(-20,minYValue), Math.toRadians(90))
-                                .splineToConstantHeading(new Vector2d(-11,maxYValue),Math.toRadians(90))
-                                .strafeToSplineHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(127))
-                                .waitSeconds(6)
-                                .strafeToSplineHeading(new Vector2d(3,minYValue), Math.toRadians(90))
-                                .splineToConstantHeading(new Vector2d(12,maxYValue),Math.toRadians(90))
-                                .strafeToSplineHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(127))
-                                .waitSeconds(6)
+                        .turn(Math.toRadians(127))
+                .strafeToLinearHeading(new Vector2d(-31,48), Math.toRadians(127))
                 .build());
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_DECODE_JUICE_DARK)
@@ -87,7 +78,7 @@ public class MeepMeepTesting {
                                 .strafeToSplineHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(127))
                                 .waitSeconds(6)
 
- /* The following gets the other 3 times but doesnt do it time
+ /* The following gets the other 3 times but goes over 30 seconds
 
                                 .strafeToSplineHeading(new Vector2d(26.5,minYValue), Math.toRadians(90))
                                 .splineToConstantHeading(new Vector2d(35.5,maxYValue),Math.toRadians(90))
