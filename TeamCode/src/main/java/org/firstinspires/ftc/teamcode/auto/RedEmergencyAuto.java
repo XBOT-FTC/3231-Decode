@@ -28,6 +28,7 @@ public class RedEmergencyAuto extends LinearOpMode {
 
         Action trajectoryAction = drive.actionBuilder(startingPose)
                 .strafeToLinearHeading(new Vector2d(-31,48), Math.toRadians(127))
+                .waitSeconds(.5)
                 .build();
         // Initialization
         while (!isStopRequested() && !opModeIsActive()) {
@@ -40,10 +41,8 @@ public class RedEmergencyAuto extends LinearOpMode {
         waitForStart();
 
         Actions.runBlocking(
-                new SequentialAction(
-
                         new ParallelAction(
-                                trajectoryAction.run(telemetry)
+                                trajectoryAction
                         )
 //                        Example
 //                        trajectoryActionChosen,
@@ -51,7 +50,7 @@ public class RedEmergencyAuto extends LinearOpMode {
 //                        claw.openClaw(),
 //                        lift.liftDown(),
 //                        trajectoryActionCloseOut
-                )
+
         );
     }
     }
