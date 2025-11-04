@@ -43,7 +43,6 @@ public class RedMainAuto extends LinearOpMode {
                 .strafeToSplineHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(127))
                 //stop intake
                 .waitSeconds(6) //Replace this shooter code
-
                 .build();
     }
 
