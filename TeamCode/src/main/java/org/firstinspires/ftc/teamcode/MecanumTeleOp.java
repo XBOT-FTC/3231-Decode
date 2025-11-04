@@ -12,7 +12,8 @@ public class MecanumTeleOp extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        DriveTrain driveTrain = new DriveTrain(hardwareMap,telemetry);
+        DriveTrain driveTrain = new DriveTrain(hardwareMap, telemetry);
+
         Shooter shooter = new Shooter(hardwareMap,telemetry);
 
         waitForStart();
@@ -24,6 +25,7 @@ public class MecanumTeleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
             driveTrain.drive(currentGamepad1, telemetry);
+
             //The Y button is for shooting
             //Use the Dpad to change the speed of the motors
             boolean wasYPressed = gamepad1.y;
@@ -38,14 +40,13 @@ public class MecanumTeleOp extends LinearOpMode {
 
             //Shooting Code
             if (wasYPressed == true) {
-                shooter.shooter50();
-            } else if (wasXPressed == true) {
-                //shooter.shooter30();
-                shooter.setMotorPower(shooter.getShooterMotor(), shooter.getShooterPower());
-            } else if (wasAPressed == true) {
-                shooter.shooter70();
-            } else if (wasBPressed == true) {
                 shooter.shooter100();
+            } else if (wasXPressed == true) {
+                shooter.shooter30();
+            } else if (wasAPressed == true) {
+                shooter.shooter50();
+            } else if (wasBPressed == true) {
+                shooter.shooter70();
             } else {
                 shooter.setZero(shooter.getShooterMotor());
             }
@@ -60,8 +61,10 @@ public class MecanumTeleOp extends LinearOpMode {
                 shooter.decreasePower();
             }
 
+
             //Telemetry for movement motors and shooters
-            telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f) leftShooter(%.2f) rightShooter(%.2f)", driveTrain.getFrontLeftPower(), driveTrain.getFrontRightPower(), driveTrain.getBackLeftPower(), driveTrain.getBackRightPower(), shooter.getShooterPower());
+            telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f)", driveTrain.getFrontLeftPower(), driveTrain.getFrontRightPower(), driveTrain.getBackLeftPower(), driveTrain.getBackRightPower());
+            telemetry.addData("motors", "shooter(%.2f)", shooter.getShooterMotor());
             telemetry.update();
         }
     }
