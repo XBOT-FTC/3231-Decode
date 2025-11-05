@@ -35,8 +35,8 @@ public class Shooter {
         motor.setPower(0);
     }
 
-    public void setMotorPower(DcMotor motor, double power) {
-        motor.setPower(power);
+    public void setMotorPower(double power) {
+        this.shooterMotor.setPower(power);
     }
 
     //Return shooter motors and powers
@@ -46,27 +46,24 @@ public class Shooter {
     public double getShooterPower() {
         return this.shooterPower;
     }
-    public double shooterPower() {
-        return this.shooterPower;
-    }
 
     public void shooter100() {
         this.shooterPower = 1;
-        setMotorPower(this.shooterMotor, this.shooterPower);
+        setMotorPower(this.shooterPower);
     }
 
     public void shooter30() {
         this.shooterPower = 0.3;
-        setMotorPower(this.shooterMotor, this.shooterPower);
+        setMotorPower(this.shooterPower);
     }
 
     public void shooter50() {
         this.shooterPower = 0.5;
-        setMotorPower(this.shooterMotor, this.shooterPower);
+        setMotorPower(this.shooterPower);
     }
 
     public void shooter70() {
         this.shooterPower = 0.7;
-        setMotorPower(this.shooterMotor, this.shooterPower);
+        setMotorPower(this.shooterPower);
     }
 }
