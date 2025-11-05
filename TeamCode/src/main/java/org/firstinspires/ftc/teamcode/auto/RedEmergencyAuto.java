@@ -41,7 +41,7 @@ public class RedEmergencyAuto extends LinearOpMode {
         waitForStart();
 
         Actions.runBlocking(
-                        new ParallelAction(
+                        new SequentialAction(
                                 trajectoryAction
                         )
 //                        Example

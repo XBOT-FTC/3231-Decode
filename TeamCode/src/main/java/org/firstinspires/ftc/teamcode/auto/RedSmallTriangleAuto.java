@@ -64,7 +64,6 @@ public class RedSmallTriangleAuto extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
-                        new ParallelAction(
                                 trajectoryAction
                         )
 //                        Example
@@ -73,8 +72,8 @@ public class RedSmallTriangleAuto extends LinearOpMode {
 //                        claw.openClaw(),
 //                        lift.liftDown(),
 //                        trajectoryActionCloseOut
-                )
-        );
+                );
+
 
     }
 

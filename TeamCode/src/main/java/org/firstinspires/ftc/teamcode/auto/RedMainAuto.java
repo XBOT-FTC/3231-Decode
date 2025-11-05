@@ -60,7 +60,6 @@ public class RedMainAuto extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
-                        new ParallelAction(
                                 trajectoryAction
                         )
 //                        Example
@@ -69,8 +68,8 @@ public class RedMainAuto extends LinearOpMode {
 //                        claw.openClaw(),
 //                        lift.liftDown(),
 //                        trajectoryActionCloseOut
-                )
-        );
+                );
+
 
     }
 
