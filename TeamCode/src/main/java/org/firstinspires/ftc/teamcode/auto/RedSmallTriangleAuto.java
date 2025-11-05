@@ -22,33 +22,33 @@ public class RedSmallTriangleAuto extends LinearOpMode {
 
         Action trajectoryAction = drive.actionBuilder(startingPose)
 
-                .waitSeconds(1)
+                .waitSeconds(6)
 
                 .strafeToSplineHeading(new Vector2d(43,29),Math.toRadians(90))
 
                 .splineToConstantHeading(new Vector2d(36,56),Math.toRadians(90))
 
-                .waitSeconds(1)
+                .waitSeconds(6)
 
                 .strafeToSplineHeading(new Vector2d(58.2,25),Math.toRadians(150))
 
-                .waitSeconds(1)
+                .waitSeconds(6)
 
                 .strafeToSplineHeading(new Vector2d(16,30), Math.toRadians(90))
 
                 .splineToConstantHeading(new Vector2d(9,56),Math.toRadians(150))
 
-                .waitSeconds(1)
+                .waitSeconds(6)
 
                 .strafeToSplineHeading(new Vector2d(-11,21),Math.toRadians(130))
 
-                .waitSeconds(1)
+                .waitSeconds(6)
 
                 .turnTo(Math.toRadians(90))
 
                 .strafeToSplineHeading(new Vector2d(-11,56), Math.toRadians(90))
 
-                .waitSeconds(1)
+                .waitSeconds(6)
 
                 .strafeToSplineHeading(new Vector2d(-34,38),Math.toRadians(140))
                 
