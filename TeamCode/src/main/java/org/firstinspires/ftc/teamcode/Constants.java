@@ -3,31 +3,28 @@ package org.firstinspires.ftc.teamcode;
 public class Constants {
 
     //Motor Constants
+    //Port 3
     public static String leftFrontDriveMotor(){
        return "frontLeftMotor";
     }
-
+    //Port 0
     public static String rightFrontDriveMotor(){
         return "frontRightMotor";
     }
-
+    //Port 2
     public static String leftBackDriveMotor(){
         return "backLeftMotor";
     }
-
+    //Port 1
     public static String rightBackDriveMotor(){
         return "backRightMotor";
     }
 
-    public static String leftShooterMotor(){
-        return "leftShooterMotor";
+    public static String shooterMotor(){
+        return "shooterMotor";
     }
 
-    public static String rightShooterMotor(){
-        return "rightShooterMotor";
-    }
 
     //Shooter Constants
-    public static double leftShooterPower = .1;
-    public static double rightShooterPower = .1;
+    public static double shooterPower = .1;
 }
