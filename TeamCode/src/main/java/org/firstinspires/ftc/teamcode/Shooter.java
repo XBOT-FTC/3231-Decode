@@ -6,31 +6,28 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 //Shooter class
 public class Shooter {
-    private final DcMotor leftShooterMotor;
-    private final DcMotor rightShooterMotor;
+    private final DcMotor shooterMotor;
     //Shooters starting power constants
-    public double leftShooterPower = Constants.leftShooterPower;
-    public double rightShooterPower = Constants.rightShooterPower;
+    public double shooterPower = Constants.shooterPower;
+
+    public Shooter(HardwareMap hardwareMap, Telemetry telemetry) {
+        this.shooterMotor = hardwareMap.dcMotor.get(Constants.shooterMotor());
+    }
 
     //Shooter power increase function
     public void increasePower() {
-        this.leftShooterPower = leftShooterPower + 0.1;
-        this.rightShooterPower = rightShooterPower + 0.1;
-        this.leftShooterPower = Math.min(leftShooterPower, 1.0);
-        this.rightShooterPower = Math.min(rightShooterPower, 1.0);
+        this.shooterPower = shooterPower + 0.1;
+        this.shooterPower = Math.min(shooterPower, 1.0);
     }
 
     //Shooter power decrease function
     public void decreasePower() {
-        this.leftShooterPower = leftShooterPower - 0.1;
-        this.rightShooterPower = rightShooterPower - 0.1;
-        this.leftShooterPower = Math.max(leftShooterPower, 0);
-        this.rightShooterPower = Math.max(rightShooterPower, 0);
+        this.shooterPower = shooterPower - 0.1;
+        this.shooterPower = Math.max(shooterPower, 0);
     }
 
     //Constant for shooter motors stop
@@ -42,30 +39,34 @@ public class Shooter {
         motor.setPower(power);
     }
 
-    public Shooter(HardwareMap hardwareMap, Telemetry telemetry) {
-        this.leftShooterMotor = hardwareMap.dcMotor.get(Constants.leftShooterMotor());
-        this.rightShooterMotor = hardwareMap.dcMotor.get(Constants.rightShooterMotor());
-        this.rightShooterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-    }
-
     //Return shooter motors and powers
-    public DcMotor getLeftShooterMotor() {
-        return this.leftShooterMotor;
+    public DcMotor getShooterMotor() {
+        return this.shooterMotor;
+    }
+    public double getShooterPower() {
+        return this.shooterPower;
+    }
+    public double shooterPower() {
+        return this.shooterPower;
     }
 
-    public DcMotor getRightShooterMotor() {
-        return this.rightShooterMotor;
+    public void shooter100() {
+        this.shooterPower = 1;
+        setMotorPower(this.shooterMotor, this.shooterPower);
     }
 
-    public double getLeftShooterPower() {
-        return leftShooterPower;
+    public void shooter30() {
+        this.shooterPower = 0.3;
+        setMotorPower(this.shooterMotor, this.shooterPower);
     }
 
-    public double getRightShooterPower() {
-        return rightShooterPower;
+    public void shooter50() {
+        this.shooterPower = 0.5;
+        setMotorPower(this.shooterMotor, this.shooterPower);
     }
 
-
-          //  telemetry.addData("motors", "leftShooter(%.2f) rightShooter(%.2f)", leftShooterPower, rightShooterPower);
-          //  telemetry.update();
+    public void shooter70() {
+        this.shooterPower = 0.7;
+        setMotorPower(this.shooterMotor, this.shooterPower);
     }
+}

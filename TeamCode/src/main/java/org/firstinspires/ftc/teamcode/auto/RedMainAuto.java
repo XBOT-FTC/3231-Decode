@@ -6,17 +6,20 @@ import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 @Autonomous(name = "RedMainAuto", group = "Autonomous")
-public class RedMainAuto {
+public class RedMainAuto extends LinearOpMode {
 
     double startPoseX = -56; //SmallTriangleAuto = 58
     double startPoseY = 45; //SmallTriangleAuto = 0
     double minYValue = 31;
     double maxYValue = 54;
+
+    @Override
     public void runOpMode(){
         Pose2d startingPose = new Pose2d(-startPoseX, startPoseY, Math.toRadians(0));
 
@@ -40,7 +43,6 @@ public class RedMainAuto {
                 .strafeToSplineHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(127))
                 //stop intake
                 .waitSeconds(6) //Replace this shooter code
-
                 .build();
     }
 
