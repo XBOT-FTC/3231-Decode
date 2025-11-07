@@ -15,8 +15,8 @@ public class MecanumTeleOp extends LinearOpMode {
         DriveTrain driveTrain = new DriveTrain(hardwareMap, telemetry);
 
         Shooter shooter = new Shooter(hardwareMap, telemetry);
-//        ColorSensing colorSensor = new ColorSensing(hardwareMap, telemetry);
-//        Intake intake = new Intake(hardwareMap, telemetry);
+        ColorSensing colorSensor = new ColorSensing(hardwareMap, telemetry);
+        Intake intake = new Intake(hardwareMap, telemetry);
         waitForStart();
 
         if (isStopRequested()) return;
@@ -28,7 +28,7 @@ public class MecanumTeleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-//            colorSensor.updateTelemetry();
+            colorSensor.updateTelemetry();
 
             //The Y button is for shooting
             //Use the Dpad to change the speed of the motors
@@ -69,8 +69,8 @@ public class MecanumTeleOp extends LinearOpMode {
                 shooter.decreasePower();
             }
 
-//            intake.run(currentGamepad1);
-//            colorSensor.updateTelemetry();
+            intake.run(currentGamepad1);
+            colorSensor.updateTelemetry();
 
             //Telemetry for movement motors and shooters
             telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f)", driveTrain.getFrontLeftPower(), driveTrain.getFrontRightPower(), driveTrain.getBackLeftPower(), driveTrain.getBackRightPower());
