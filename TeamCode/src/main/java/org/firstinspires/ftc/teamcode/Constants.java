@@ -20,11 +20,14 @@ public class Constants {
         return "backRightMotor";
     }
 
+    // Shooter Constants
     public static String shooterMotor(){
         return "shooterMotor";
     }
 
+    // Starting Power
+    public static double shooterPower = .3;
 
-    //Shooter Constants
-    public static double shooterPower = .1;
+    // Color Sensor
+    public static String getColorSensorName () { return "Test"; }
 }
