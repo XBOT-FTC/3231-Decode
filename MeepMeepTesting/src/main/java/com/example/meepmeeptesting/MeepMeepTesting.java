@@ -198,7 +198,7 @@ public class MeepMeepTesting {
                                 .splineToConstantHeading(new Vector2d(35.5,maxYValue),Math.toRadians(90))
                                 .strafeToSplineHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(127))*/
 
-/* blue auto    .strafeToLinearHeading(new Vector2d(-40, -34), Math.toRadians(230))
+/* Blue auto    .strafeToLinearHeading(new Vector2d(-40, -34), Math.toRadians(230))
                 .waitSeconds(5)
                 .strafeToLinearHeading(new Vector2d(-13, -30), Math.toRadians(270))
                 .strafeToLinearHeading(new Vector2d(-13, -47),Math.toRadians(270))

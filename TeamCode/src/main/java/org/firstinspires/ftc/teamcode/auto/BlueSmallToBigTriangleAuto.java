@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.auto;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -12,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 @Autonomous(name = "BlueAuto", group = "Autonomous")
-public class BlueAuto extends LinearOpMode {
+public class BlueSmallToBigTriangleAuto extends LinearOpMode {
     
     public void runOpMode(){
         Pose2d startingPose = new Pose2d(68, -10, Math.toRadians(0));
