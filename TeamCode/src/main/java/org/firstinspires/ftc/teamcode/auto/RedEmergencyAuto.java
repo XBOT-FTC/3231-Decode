@@ -22,7 +22,7 @@ public class RedEmergencyAuto extends LinearOpMode {
 
     @Override
     public void runOpMode(){
-        Pose2d startingPose = new Pose2d(startPoseX, startPoseY, Math.toRadians(0));
+        Pose2d startingPose = new Pose2d(startPoseX, startPoseY, Math.toRadians(127));
 
         MecanumDrive drive = new MecanumDrive(hardwareMap, startingPose);
 

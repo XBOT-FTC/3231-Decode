@@ -19,35 +19,37 @@ public class RedSmallTriangleAuto extends LinearOpMode {
 
     @Override
     public void runOpMode(){
-        Pose2d startingPose = new Pose2d(58, 0, Math.toRadians(0));
+        Pose2d startingPose = new Pose2d(58, 0, Math.toRadians(150));
 
         MecanumDrive drive = new MecanumDrive(hardwareMap, startingPose);
 
         Action trajectoryAction = drive.actionBuilder(startingPose)
 
-                .splineTo(new Vector2d(35,36),Math.toRadians(90))
+                .turnTo(Math.toRadians(150))
 
-                .waitSeconds(6)
+                .waitSeconds(1)
+
+                .splineTo(new Vector2d(35,56),Math.toRadians(90))
+
+                .waitSeconds(1)
 
                 .strafeToLinearHeading(new Vector2d(58,0),Math.toRadians(150))
 
-                .waitSeconds(6)
+                .waitSeconds(1)
 
                 .splineTo(new Vector2d(12,56),Math.toRadians(90))
 
-                .waitSeconds(6)
+                .waitSeconds(1)
 
                 .strafeToSplineHeading(new Vector2d(-11,0),Math.toRadians(135))
 
-                .waitSeconds(6)
+                .waitSeconds(1)
 
-                .setTangent(Math.toRadians(90))
-
-                .waitSeconds(6)
+                .turnTo(Math.toRadians(90))
 
                 .strafeToSplineHeading(new Vector2d(-11,56), Math.toRadians(90))
 
-                .waitSeconds(6)
+                .waitSeconds(1)
 
                 .strafeToSplineHeading(new Vector2d(-34,38),Math.toRadians(140))
 
