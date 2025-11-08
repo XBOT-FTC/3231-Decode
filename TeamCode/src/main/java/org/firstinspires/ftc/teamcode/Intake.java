@@ -9,10 +9,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Intake {
     private final DcMotor intakeMotor;
-    private final Telemetry telemetry;
 
-    public Intake(HardwareMap hardwareMap, Telemetry telemetry) {
-        this.telemetry = telemetry;
+    public Intake(HardwareMap hardwareMap) {
         this.intakeMotor = hardwareMap.dcMotor.get("intakeMotor");
         this.intakeMotor.setDirection(DcMotorSimple.Direction.FORWARD);
     }
@@ -25,8 +23,9 @@ public class Intake {
         } else {
             intakeMotor.setPower(0);
         }
+    }
 
-        telemetry.addData("Intake Power", "%.2f", intakeMotor.getPower());
-        telemetry.update();
+    public double getIntakePower() {
+        return intakeMotor.getPower();
     }
 }

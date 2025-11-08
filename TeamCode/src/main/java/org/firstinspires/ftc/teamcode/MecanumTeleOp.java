@@ -15,7 +15,7 @@ public class MecanumTeleOp extends LinearOpMode {
         DriveTrain driveTrain = new DriveTrain(hardwareMap, telemetry);
         Shooter shooter = new Shooter(hardwareMap, telemetry);
         // ColorSensing colorSensor = new ColorSensing(hardwareMap, telemetry);
-        Intake intake = new Intake(hardwareMap, telemetry);
+        Intake intake = new Intake(hardwareMap);
         Blocker leftblocker = new Blocker(hardwareMap, telemetry, "left");
         Blocker rightblocker = new Blocker(hardwareMap, telemetry, "right");
         waitForStart();
@@ -40,7 +40,9 @@ public class MecanumTeleOp extends LinearOpMode {
             boolean wasAPressed = gamepad2.a;
             boolean wasBPressed = gamepad2.b;
 
+            previousGamepad1.copy(currentGamepad1);
             currentGamepad1.copy(gamepad1);
+
             previousGamepad2.copy(currentGamepad2);
             currentGamepad2.copy(gamepad2);
 
@@ -79,6 +81,9 @@ public class MecanumTeleOp extends LinearOpMode {
             telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f)", driveTrain.getFrontLeftPower(), driveTrain.getFrontRightPower(), driveTrain.getBackLeftPower(), driveTrain.getBackRightPower());
             telemetry.addData("shooter", "shooter(%.2f)", shooter.getShooterPower());
             telemetry.addData("shooter encoder", "shooter encoder (%.2f), ", shooter.shooterEncoderPosition());
+            telemetry.addData("intake","intake (%.2f)", intake.getIntakePower());
+            telemetry.addData("Left Blocker", "left blocker position (%.2f), ", leftblocker.getServoPosition());
+            telemetry.addData("Right Blocker", "right blocker position (%.2f), ", rightblocker.getServoPosition());
             telemetry.update();
         }
     }
