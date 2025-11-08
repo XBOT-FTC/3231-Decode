@@ -18,9 +18,9 @@ public class Intake {
     }
     
     public void run(Gamepad gamepad) {
-        if (gamepad.left_bumper) { // Intake
+        if (gamepad.right_trigger >= 0.5) { // Intake
             intakeMotor.setPower(1.0);
-        } else if (gamepad.right_bumper) { // Outtake
+        } else if (gamepad.left_trigger >= 0.5) { // Outtake
             intakeMotor.setPower(-1.0);
         } else {
             intakeMotor.setPower(0);
