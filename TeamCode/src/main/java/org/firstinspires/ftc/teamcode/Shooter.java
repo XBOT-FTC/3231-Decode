@@ -16,6 +16,7 @@ public class Shooter {
 
     public Shooter(HardwareMap hardwareMap, Telemetry telemetry) {
         this.shooterMotor = hardwareMap.dcMotor.get(Constants.shooterMotor());
+        this.shooterMotor.setDirection(DcMotor.Direction.REVERSE);
     }
     //Shooter power increase function
     public void increasePower() {
