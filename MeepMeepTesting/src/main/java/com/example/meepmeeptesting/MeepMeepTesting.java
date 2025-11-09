@@ -12,8 +12,8 @@ public class MeepMeepTesting {
 
         int pause = 0;
 
-        double redStartPoseX = 58; //SmallTriangleAuto = 58
-        double redStartPoseY = 0; //SmallTriangleAuto = 0
+        double redStartPoseX = -56; //SmallTriangleAuto = 58
+        double redStartPoseY = 45; //SmallTriangleAuto = 0
         double redStartPoseZ = 0; // SmallTriangleAuto = 0
 
         double blueStartPoseX = -56;
@@ -36,19 +36,30 @@ public class MeepMeepTesting {
                 .build();
 
         red.runAction(red.getDrive().actionBuilder(new Pose2d(redStartPoseX, redStartPoseY, redStartPoseZ))
-                        .turn(Math.toRadians(150))
-                        .waitSeconds(1)
-                        .splineTo(new Vector2d(35,56),Math.toRadians(90))
-                        .waitSeconds(1)
-                        .strafeToLinearHeading(new Vector2d(redStartPoseX,redStartPoseY),Math.toRadians(150))
-                        .waitSeconds(1)
+                        .splineTo(new Vector2d(35,36),Math.toRadians(90))
+
+                        .waitSeconds(pause)
+
+                        .strafeToLinearHeading(new Vector2d(58,0),Math.toRadians(150))
+
+                        .waitSeconds(pause)
+
                         .splineTo(new Vector2d(12,56),Math.toRadians(90))
-                        .waitSeconds(1)
+
+                        .waitSeconds(pause)
+
                         .strafeToSplineHeading(new Vector2d(-11,0),Math.toRadians(135))
-                        .waitSeconds(1)
-                        .turnTo(Math.toRadians(90))
+
+                        .waitSeconds(pause)
+
+                        .setTangent(Math.toRadians(90))
+
+                        .waitSeconds(pause)
+
                         .strafeToSplineHeading(new Vector2d(-11,56), Math.toRadians(90))
-                        .waitSeconds(1)
+
+                        .waitSeconds(pause)
+
                         .strafeToSplineHeading(new Vector2d(-34,38),Math.toRadians(140))
                                 .build());
 
