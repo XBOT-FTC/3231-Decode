@@ -14,7 +14,7 @@ public class MecanumTeleOp extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         DriveTrain driveTrain = new DriveTrain(hardwareMap, telemetry);
         Shooter shooter = new Shooter(hardwareMap, telemetry);
-        // ColorSensing colorSensor = new ColorSensing(hardwareMap, telemetry);
+        ColorSensing colorSensor = new ColorSensing(hardwareMap, telemetry);
         Intake intake = new Intake(hardwareMap);
         Blocker leftblocker = new Blocker(hardwareMap, telemetry, "left");
         Blocker rightblocker = new Blocker(hardwareMap, telemetry, "right");
@@ -75,7 +75,7 @@ public class MecanumTeleOp extends LinearOpMode {
             }
 
             intake.run(currentGamepad2);
-           //  colorSensor.updateTelemetry();
+            colorSensor.updateTelemetry();
 
             //Telemetry for movement motors and shooters
             telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f)", driveTrain.getFrontLeftPower(), driveTrain.getFrontRightPower(), driveTrain.getBackLeftPower(), driveTrain.getBackRightPower());
