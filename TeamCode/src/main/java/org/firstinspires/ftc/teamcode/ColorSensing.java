@@ -11,9 +11,9 @@ public class ColorSensing {
     private NormalizedColorSensor colorSensor;
     private Telemetry telemetry;
 
-    public ColorSensing(HardwareMap hardwareMap, Telemetry telemetry, String sensorName) {
+    public ColorSensing(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
-        this.colorSensor = hardwareMap.get(NormalizedColorSensor.class, sensorName);
+        this.colorSensor = hardwareMap.get(NormalizedColorSensor.class, Constants.getColorSensorName());
         colorSensor.setGain(2); // optional gain tuning
     }
 
