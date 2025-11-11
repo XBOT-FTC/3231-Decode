@@ -67,6 +67,11 @@ public class Shooter {
         setMotorPower(this.shooterPower);
     }
 
+    public void reverseMotor() {
+        this.shooterPower = this.shooterPower * -1;
+        setMotorPower(this.shooterPower);
+    }
+
     public double shooterEncoderPosition() {
         return this.shooterMotor.getCurrentPosition();
     }

@@ -4,7 +4,9 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.har
 
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.Vector2d;
+import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -24,8 +26,31 @@ public class RedEmergencyAuto extends LinearOpMode {
         MecanumDrive drive = new MecanumDrive(hardwareMap, startingPose);
 
         Action trajectoryAction = drive.actionBuilder(startingPose)
-                .strafeToLinearHeading(new Vector2d(-31,48), Math.toRadians(127))
+                .strafeToLinearHeading(new Vector2d(-24,48), Math.toRadians(127))
                 .build();
+
+        // Initialization
+        while (!isStopRequested() && !opModeIsActive()) {
+            telemetry.addData("Position during Init", 1);
+            telemetry.update();
+        }
+
+        if (isStopRequested()) return;
+
+        waitForStart();
+
+        Actions.runBlocking(
+                new SequentialAction(
+                        trajectoryAction
+                )
+//                        Example
+//                        trajectoryActionChosen,
+//                        lift.liftUp(),
+//                        claw.openClaw(),
+//                        lift.liftDown(),
+//                        trajectoryActionCloseOut
+        );
+
     }
 
 }
