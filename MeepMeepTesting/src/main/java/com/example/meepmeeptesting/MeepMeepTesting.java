@@ -36,7 +36,7 @@ public class MeepMeepTesting {
                 .build();
 
         red.runAction(red.getDrive().actionBuilder(new Pose2d(redStartPoseX, redStartPoseY, redStartPoseZ))
-                        .strafeToSplineHeading(new Vector2d(0,0),Math.toRadians(135))
+                .strafeToSplineHeading(new Vector2d(0,0),Math.toRadians(135))
 
                 .waitSeconds(6) //Replace this with shoot code
 
@@ -55,7 +55,7 @@ public class MeepMeepTesting {
                 .strafeToSplineHeading(new Vector2d(0,0),Math.toRadians(135))
                 //stop intake
                 .waitSeconds(6) //Replace this shooter code
-                                .build());
+                .build());
 
         blue.runAction(blue.getDrive().actionBuilder(new Pose2d(blueStartPoseX, blueStartPoseY, blueStartPoseZ))
                 .splineTo(new Vector2d(35,-36),Math.toRadians(90))
@@ -142,6 +142,30 @@ public class MeepMeepTesting {
                                 .strafeToSplineHeading(new Vector2d(26.5,minYValue), Math.toRadians(90))
                                 .splineToConstantHeading(new Vector2d(35.5,maxYValue),Math.toRadians(90))
                                 .strafeToSplineHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(127))*/
+
+/* Red middle area auto
+
+.strafeToSplineHeading(new Vector2d(0,0),Math.toRadians(135))
+
+                .waitSeconds(6) //Replace this with shoot code
+
+                .strafeToSplineHeading(new Vector2d(-10,minYValue), Math.toRadians(90))
+                //Start intake
+                .splineToConstantHeading(new Vector2d(-11,maxYValue),Math.toRadians(90))
+
+                .strafeToSplineHeading(new Vector2d(0,0),Math.toRadians(135))
+                //stop intake
+                .waitSeconds(6) //Replace this with the shoot code
+
+                .strafeToSplineHeading(new Vector2d(11,minYValue), Math.toRadians(90))
+                //Start intake
+                .splineToConstantHeading(new Vector2d(12,maxYValue),Math.toRadians(90))
+
+                .strafeToSplineHeading(new Vector2d(0,0),Math.toRadians(135))
+                //stop intake
+                .waitSeconds(6) //Replace this shooter code
+                
+ */
 
 
 
