@@ -16,8 +16,8 @@ public class Shooter {
 
     public Shooter(HardwareMap hardwareMap, Telemetry telemetry) {
         this.shooterMotor = hardwareMap.dcMotor.get(Constants.shooterMotor());
+        this.shooterMotor.setDirection(DcMotor.Direction.REVERSE);
     }
-
     //Shooter power increase function
     public void increasePower() {
         this.shooterPower = shooterPower + 0.1;
@@ -39,7 +39,7 @@ public class Shooter {
         this.shooterMotor.setPower(power);
     }
 
-    //Return shooter motors and powers
+   //Return shooter motors and powers
     public DcMotor getShooterMotor() {
         return this.shooterMotor;
     }
@@ -65,5 +65,14 @@ public class Shooter {
     public void shooter70() {
         this.shooterPower = 0.7;
         setMotorPower(this.shooterPower);
+    }
+
+    public void reverseMotor() {
+        this.shooterPower = this.shooterPower * -1;
+        setMotorPower(this.shooterPower);
+    }
+
+    public double shooterEncoderPosition() {
+        return this.shooterMotor.getCurrentPosition();
     }
 }

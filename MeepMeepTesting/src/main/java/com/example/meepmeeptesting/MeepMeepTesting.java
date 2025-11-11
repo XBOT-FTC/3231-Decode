@@ -36,31 +36,7 @@ public class MeepMeepTesting {
                 .build();
 
         red.runAction(red.getDrive().actionBuilder(new Pose2d(redStartPoseX, redStartPoseY, redStartPoseZ))
-                        .splineTo(new Vector2d(35,36),Math.toRadians(90))
-
-                        .waitSeconds(pause)
-
-                        .strafeToLinearHeading(new Vector2d(58,0),Math.toRadians(150))
-
-                        .waitSeconds(pause)
-
-                        .splineTo(new Vector2d(12,56),Math.toRadians(90))
-
-                        .waitSeconds(pause)
-
-                        .strafeToSplineHeading(new Vector2d(-11,0),Math.toRadians(135))
-
-                        .waitSeconds(pause)
-
-                        .setTangent(Math.toRadians(90))
-
-                        .waitSeconds(pause)
-
-                        .strafeToSplineHeading(new Vector2d(-11,56), Math.toRadians(90))
-
-                        .waitSeconds(pause)
-
-                        .strafeToSplineHeading(new Vector2d(-34,38),Math.toRadians(140))
+                .strafeToLinearHeading(new Vector2d(-27,48), Math.toRadians(127))
                                 .build());
 
         blue.runAction(blue.getDrive().actionBuilder(new Pose2d(blueStartPoseX, blueStartPoseY, blueStartPoseZ))

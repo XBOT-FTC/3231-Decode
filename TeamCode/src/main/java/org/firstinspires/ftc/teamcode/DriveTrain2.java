@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class DriveTrain {
+public class DriveTrain2 {
     private final DcMotor frontLeftMotor;
     private final DcMotor frontRightMotor;
     private final DcMotor backLeftMotor;
@@ -29,14 +29,11 @@ public class DriveTrain {
     public double getBackRightPower() {
         return this.backRightPower;
     }
-    public DriveTrain(HardwareMap hardwareMap, Telemetry telemetry) {
+    public DriveTrain2(HardwareMap hardwareMap, Telemetry telemetry) {
         this.frontLeftMotor = hardwareMap.dcMotor.get(Constants.leftFrontDriveMotor());
         this.frontRightMotor = hardwareMap.dcMotor.get(Constants.rightFrontDriveMotor());
         this.backLeftMotor = hardwareMap.dcMotor.get(Constants.leftBackDriveMotor());
         this.backRightMotor = hardwareMap.dcMotor.get(Constants.rightBackDriveMotor());
-
-        this.frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-
         this.frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         this.backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
@@ -49,8 +46,8 @@ public class DriveTrain {
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
         this.frontLeftPower = (y - x + rx) / denominator;
         this.backLeftPower = (y + x + rx) / denominator;
-        this.frontRightPower = (y + x - rx) / denominator;
-        this.backRightPower = (y - x - rx) / denominator;
+        this.frontRightPower = (y - x - rx) / denominator;
+        this.backRightPower = (y + x - rx) / denominator;
 
         frontLeftMotor.setPower(frontLeftPower);
         backLeftMotor.setPower(backLeftPower);

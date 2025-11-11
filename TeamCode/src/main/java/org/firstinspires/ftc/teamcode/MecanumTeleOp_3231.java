@@ -2,22 +2,19 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 
-@TeleOp(name = "2025TeleOp_2939", group="Linear OpMode")
-public class MecanumTeleOp extends LinearOpMode {
+@TeleOp(name = "2025TeleOp_3231", group="Linear OpMode")
+public class MecanumTeleOp_3231 extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        DriveTrain driveTrain = new DriveTrain(hardwareMap, telemetry);
+        DriveTrain2 driveTrain = new DriveTrain2(hardwareMap, telemetry);
         Shooter shooter = new Shooter(hardwareMap, telemetry);
         // ColorSensing colorSensor = new ColorSensing(hardwareMap, telemetry);
         Intake intake = new Intake(hardwareMap);
-        Blocker leftblocker = new Blocker(hardwareMap, telemetry, "left");
-        Blocker rightblocker = new Blocker(hardwareMap, telemetry, "right");
+        Blocker2 leftblocker = new Blocker2(hardwareMap, telemetry, "left");
+        Blocker2 rightblocker = new Blocker2(hardwareMap, telemetry, "right");
         waitForStart();
 
         if (isStopRequested()) return;
@@ -60,6 +57,8 @@ public class MecanumTeleOp extends LinearOpMode {
                 shooter.shooter70();
             } else if (wasYPressed) {
                 shooter.shooter100();
+            } else if (gamepad2.dpad_left || gamepad2.dpad_right) {
+                shooter.reverseMotor();
             } else {
                 shooter.setZero(shooter.getShooterMotor());
             }
@@ -75,7 +74,7 @@ public class MecanumTeleOp extends LinearOpMode {
             }
 
             intake.run(currentGamepad2);
-            // colorSensor.updateTelemetry();
+           // colorSensor.updateTelemetry();
 
             //Telemetry for movement motors and shooters
             telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f)", driveTrain.getFrontLeftPower(), driveTrain.getFrontRightPower(), driveTrain.getBackLeftPower(), driveTrain.getBackRightPower());
