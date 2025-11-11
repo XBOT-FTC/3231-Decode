@@ -73,7 +73,7 @@ public class MecanumTeleOp_3231 extends LinearOpMode {
                 shooter.decreasePower();
             }
 
-            intake.run(currentGamepad2);
+            intake.run(currentGamepad1);
            // colorSensor.updateTelemetry();
 
             //Telemetry for movement motors and shooters
