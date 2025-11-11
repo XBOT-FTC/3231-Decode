@@ -39,6 +39,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
+import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.teamcode.messages.DriveCommandMessage;
@@ -63,23 +64,23 @@ public final class MecanumDrive {
                 RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD;
 
         // drive model parameters
-        public double inPerTick = 0.00197655585;
-        public double lateralInPerTick = 2.5976069280291227;
-        public double trackWidthTicks = 1;
+        public double inPerTick = Constants.inPerTick;
+        public double lateralInPerTick = Constants.lateralInPerTick;
+        public double trackWidthTicks = Constants.trackWidthTicks;
 
         // feedforward parameters (in tick units)
-        public double kS = 0.0004079133482833528;
-        public double kV = 0.7888060348175232;
-        public double kA = 0;
+        public double kS = Constants.kS;
+        public double kV =  Constants.kV;
+        public double kA = Constants.kA;
 
         // path profile parameters (in inches)
-        public double maxWheelVel = 50;
-        public double minProfileAccel = -30;
-        public double maxProfileAccel = 50;
+        public double maxWheelVel = Constants.maxWheelVel;
+        public double minProfileAccel = Constants.minProfileAccel;
+        public double maxProfileAccel = Constants.maxProfileAccel;
 
         // turn profile parameters (in radians)
         public double maxAngVel = Math.PI; // shared with path
-        public double maxAngAccel = Math.PI;
+            public double maxAngAccel = Math.PI;
 
         // path controller gains
         public double axialGain = 0.0;
@@ -227,20 +228,23 @@ public final class MecanumDrive {
 
         // TODO: make sure your config has motors with these names (or change them)
         //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
-        leftFront = hardwareMap.get(DcMotorEx.class, "frontLeftMotor");
-        leftBack = hardwareMap.get(DcMotorEx.class, "backLeftMotor");
-        rightBack = hardwareMap.get(DcMotorEx.class, "backRightMotor");
-        rightFront = hardwareMap.get(DcMotorEx.class, "frontRightMotor");
+        leftFront = hardwareMap.get(DcMotorEx.class, Constants.leftFrontDriveMotor());
+        leftBack = hardwareMap.get(DcMotorEx.class, Constants.leftBackDriveMotor());
+        rightBack = hardwareMap.get(DcMotorEx.class, Constants.rightBackDriveMotor());
+        rightFront = hardwareMap.get(DcMotorEx.class, Constants.rightFrontDriveMotor());
 
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+
         // TODO: reverse motor directions if needed
         //   leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
+        //rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        //rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
 
