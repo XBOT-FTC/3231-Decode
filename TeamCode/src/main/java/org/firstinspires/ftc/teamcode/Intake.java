@@ -9,24 +9,23 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Intake {
     private final DcMotor intakeMotor;
-    private final Telemetry telemetry;
 
-    public Intake(HardwareMap hardwareMap, Telemetry telemetry) {
-        this.telemetry = telemetry;
+    public Intake(HardwareMap hardwareMap) {
         this.intakeMotor = hardwareMap.dcMotor.get("intakeMotor");
         this.intakeMotor.setDirection(DcMotorSimple.Direction.FORWARD);
     }
     
     public void run(Gamepad gamepad) {
-        if (gamepad.left_bumper) { // Intake
+        if (gamepad.right_trigger >= 0.5) { // Intake
             intakeMotor.setPower(1.0);
-        } else if (gamepad.right_bumper) { // Outtake
+        } else if (gamepad.left_trigger >= 0.5) { // Outtake
             intakeMotor.setPower(-1.0);
         } else {
             intakeMotor.setPower(0);
         }
+    }
 
-        telemetry.addData("Intake Power", "%.2f", intakeMotor.getPower());
-        telemetry.update();
+    public double getIntakePower() {
+        return intakeMotor.getPower();
     }
 }
