@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode.auto.nonRoadRunner;
+package org.firstinspires.ftc.teamcode.auto.red;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -44,7 +44,7 @@ import org.firstinspires.ftc.teamcode.Constants;
 
 @Autonomous(name="RedEmergencyAutoNonRR", group="Autonomous")
 //@Disabled
-public class RedEmergencyAutoNonRR extends LinearOpMode {
+public class EmergencyAutoNonRR extends LinearOpMode {
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();

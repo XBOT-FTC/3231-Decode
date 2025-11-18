@@ -1,9 +1,6 @@
-package org.firstinspires.ftc.teamcode.auto;
-
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+package org.firstinspires.ftc.teamcode.auto.red;
 
 import com.acmerobotics.roadrunner.Action;
-import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -15,7 +12,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 @Autonomous(name = "RedMainAuto", group = "Autonomous")
-public class RedMainAuto extends LinearOpMode {
+public class MainAuto extends LinearOpMode {
 
     double startPoseX = -56; //SmallTriangleAuto = 58
     double startPoseY = 45; //SmallTriangleAuto = 0

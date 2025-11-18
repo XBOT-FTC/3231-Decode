@@ -1,4 +1,4 @@
-package com.example.meepmeeptesting;
+package com.example.meepmeeptesting.blue;
 
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -6,19 +6,17 @@ import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
-// THIS FILE SHOULD NOT BE MODIFIED FOR ANY TESTING PURPOSES. IF YOU WANT TO TEST, PLEASE PUT IT INTO THE SUBFOLDERS OR UNDER MEEP MEEP TESTING
-
-public class BaseMeepMeepTesting {
+public class Emergency {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(800);
 
         double startPoseX = -56; //SmallTriangleAuto = 58
-        double startPoseY = 45; //SmallTriangleAuto = 0
+        double startPoseY = -45; //SmallTriangleAuto = 0
 
         Pose2d startingPose = new Pose2d(
                 startPoseX,
                 startPoseY,
-                Math.toRadians(127)
+                Math.toRadians(-127)
         );
 
         RoadRunnerBotEntity robot = new DefaultBotBuilder(meepMeep)
@@ -30,7 +28,8 @@ public class BaseMeepMeepTesting {
         robot.runAction(
                 robot.getDrive()
                         .actionBuilder(startingPose)
-                        // put your commands here
+                        .strafeToLinearHeading(new Vector2d(-31, -48), Math.toRadians(-127))
+                        .waitSeconds(.5)
                         .build()
         );
 
