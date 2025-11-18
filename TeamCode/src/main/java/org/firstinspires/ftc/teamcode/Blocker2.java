@@ -39,31 +39,33 @@ public class Blocker2 {
 
     public void controlServo(Gamepad gamepad, Telemetry telemetry) {
         if (this.direction.equals("left")) {
-            if (gamepad.left_stick_x > 0) {
-                leftBlockerPose += .01;
+//            if (gamepad.left_stick_x > 0) {
+            if (gamepad.left_bumper && !previousLeftState) {
+//                leftBlockerPose += .01;
 
-//                if (isOpen) {
-//                    open();
-//                } else {
-//                    close();
-//                }
-            } else if (gamepad.left_stick_x < 0) {
-                leftBlockerPose -= .01;
-
-            } blockerServo.setPosition(leftBlockerPose);
-            // previousLeftState = gamepad.left_bumper;
+                if (isOpen) {
+                    open();
+                } else {
+                    close();
+                }
+//            } else if (gamepad.left_stick_x < 0) {
+//                leftBlockerPose -= .01;
+//
+//            } blockerServo.setPosition(leftBlockerPose);
+            } previousLeftState = gamepad.left_bumper;
         }
 
         if (this.direction.equals("right")) {
-            if (gamepad.right_stick_x > 0) {
-                rightBlockerPose +=.001;
-//                isOpen = !isOpen;
-//
-//                if (isOpen) {
-//                    open();
-//                } else {
-//                    close();
-//                }
+//            if (gamepad.right_stick_x > 0) {
+            if (gamepad.right_bumper && !previousLeftState) {
+//                rightBlockerPose +=.001;
+                isOpen = !isOpen;
+
+                if (isOpen) {
+                    open();
+                } else {
+                    close();
+                }
             } else if (gamepad.right_stick_x < 0) {
                 rightBlockerPose -=.001;
 
