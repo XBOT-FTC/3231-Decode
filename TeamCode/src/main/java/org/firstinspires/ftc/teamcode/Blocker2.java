@@ -10,8 +10,8 @@ public class Blocker2 {
     Servo blockerServo = null;
     boolean leftBumperPressed;
     boolean rightBumperPressed;
-    double leftBlockerClosePosition = 0.9;
-    double leftBlockerOpenPosition = 0.6;
+    double leftBlockerClosePosition = 0.85;
+    double leftBlockerOpenPosition = 0.67;
     double rightBlockerClosePosition = 0.35;
     double rightBlockerOpenPosition = 1;
     String direction;
