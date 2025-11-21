@@ -66,13 +66,13 @@ public class Blocker2 {
                 } else {
                     close();
                 }
-            } else if (gamepad.right_stick_x < 0) {
-                rightBlockerPose -=.001;
+//            } else if (gamepad.right_stick_x < 0) {
+//                rightBlockerPose -=.001;
+//
+//            }
+//            blockerServo.setPosition(rightBlockerPose);
 
-            }
-            blockerServo.setPosition(rightBlockerPose);
-
-            // previousRightState = gamepad.right_bumper;
+            } previousRightState = gamepad.right_bumper;
         }
 
     }
