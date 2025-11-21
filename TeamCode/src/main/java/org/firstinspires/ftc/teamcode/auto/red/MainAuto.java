@@ -1,10 +1,10 @@
-package org.firstinspires.ftc.teamcode.auto;
-
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+package org.firstinspires.ftc.teamcode.auto.red;
 
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.Vector2d;
+import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 @Autonomous(name = "RedMainAuto", group = "Autonomous")
-public class RedMainAuto extends LinearOpMode {
+public class MainAuto extends LinearOpMode {
 
     double startPoseX = -56; //SmallTriangleAuto = 58
     double startPoseY = 45; //SmallTriangleAuto = 0
@@ -21,7 +21,7 @@ public class RedMainAuto extends LinearOpMode {
 
     @Override
     public void runOpMode(){
-        Pose2d startingPose = new Pose2d(-startPoseX, startPoseY, Math.toRadians(0));
+        Pose2d startingPose = new Pose2d(startPoseX, startPoseY, Math.toRadians(127));
 
         MecanumDrive drive = new MecanumDrive(hardwareMap, startingPose);
 
@@ -44,6 +44,29 @@ public class RedMainAuto extends LinearOpMode {
                 //stop intake
                 .waitSeconds(6) //Replace this shooter code
                 .build();
+        // Initialization
+        while (!isStopRequested() && !opModeIsActive()) {
+            telemetry.addData("Position during Init", 1);
+            telemetry.update();
+        }
+
+        if (isStopRequested()) return;
+
+        waitForStart();
+
+        Actions.runBlocking(
+                new SequentialAction(
+                                trajectoryAction
+                        )
+//                        Example
+//                        trajectoryActionChosen,
+//                        lift.liftUp(),
+//                        claw.openClaw(),
+//                        lift.liftDown(),
+//                        trajectoryActionCloseOut
+                );
+
+
     }
 
 }

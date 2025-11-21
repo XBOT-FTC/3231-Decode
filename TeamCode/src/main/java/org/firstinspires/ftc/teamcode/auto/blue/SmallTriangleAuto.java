@@ -1,6 +1,4 @@
-package org.firstinspires.ftc.teamcode.auto;
-
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+package org.firstinspires.ftc.teamcode.auto.blue;
 
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
@@ -10,23 +8,33 @@ import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+
 import org.firstinspires.ftc.teamcode.MecanumDrive;
-// This auto is ONLY intended to be used for emergency situations where the robot is unable to function
-// properly due to damage or other problems with the robot. This auto moves the robot out of the starting
-// area to get the moving points.
-@Autonomous(name = "RedEmergencyAuto", group = "Autonomous")
-public class RedEmergencyAuto extends LinearOpMode {
-    double startPoseX = -56; //SmallTriangleAuto = 58
-    double startPoseY = 45; //SmallTriangleAuto = 0
+
+@Autonomous(name = "BlueSmallTriangleAuto", group = "Autonomous")
+public class SmallTriangleAuto extends LinearOpMode {
 
     @Override
     public void runOpMode(){
-        Pose2d startingPose = new Pose2d(startPoseX, startPoseY, Math.toRadians(0));
+        Pose2d startingPose = new Pose2d(58, 0, Math.toRadians(-150));
 
         MecanumDrive drive = new MecanumDrive(hardwareMap, startingPose);
 
         Action trajectoryAction = drive.actionBuilder(startingPose)
-                .strafeToLinearHeading(new Vector2d(-24,48), Math.toRadians(127))
+                .waitSeconds(6)
+                .strafeToSplineHeading(new Vector2d(43,-29),Math.toRadians(-90))
+                .splineToConstantHeading(new Vector2d(36,-56),Math.toRadians(-90))
+                .waitSeconds(1)
+                .strafeToSplineHeading(new Vector2d(58.2,-25),Math.toRadians(-150))
+                .waitSeconds(1)
+                .strafeToSplineHeading(new Vector2d(16,-30), Math.toRadians(-90))
+                .splineToConstantHeading(new Vector2d(9,-56),Math.toRadians(-150))
+                .waitSeconds(1)
+                .strafeToSplineHeading(new Vector2d(-11,-21),Math.toRadians(-130))
+                .waitSeconds(6)
+                .strafeToSplineHeading(new Vector2d(-11,-56), Math.toRadians(-90))
+                .waitSeconds(1)
+                .strafeToSplineHeading(new Vector2d(-34,-38),Math.toRadians(-140))
                 .build();
 
         // Initialization
@@ -51,11 +59,7 @@ public class RedEmergencyAuto extends LinearOpMode {
 //                        trajectoryActionCloseOut
         );
 
+
     }
 
 }
-
-
-
-
-
