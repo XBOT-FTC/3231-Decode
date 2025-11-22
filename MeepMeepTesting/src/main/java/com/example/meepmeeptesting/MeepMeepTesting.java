@@ -10,6 +10,12 @@ public class MeepMeepTesting {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(800);
 
+
+        RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
+                // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                .build();
+
         int pause = 0;
 
         double redStartPoseX = -56; //SmallTriangleAuto = 58
@@ -65,9 +71,11 @@ public class MeepMeepTesting {
                 .waitSeconds(pause)
 
                 .strafeToSplineHeading(new Vector2d(-34,-38),Math.toRadians(140))
+
                 .build());
 
-        meepMeep.setBackground(MeepMeep.Background.FIELD_DECODE_JUICE_DARK)
+
+        meepMeep.setBackground(MeepMeep.Background.FIELD_DECODE_JUICE_BLACK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
                 .addEntity(red)
@@ -75,6 +83,47 @@ public class MeepMeepTesting {
                 .start();
     }
 }
+                //.splineTo(new Vector2d(38, -32), Math.toRadians(90))
+                //.waitSeconds(3)
+                /*.splineTo(new Vector2d(-40, -34), Math.toRadians(-150))
+                .waitSeconds(6)
+                .splineTo(new Vector2d(38, -30), Math.toRadians(-90))
+                .turn(Math.toRadians(180))
+                .waitSeconds(4)
+                .splineTo(new Vector2d(-40, -34), Math.toRadians(-150))
+                .waitSeconds(6)
+                .splineTo(new Vector2d(12, -30), Math.toRadians(-90))
+                .turn(Math.toRadians(180))
+                .waitSeconds(4)
+                .splineTo(new Vector2d(-40, -34), Math.toRadians(-150))
+                .waitSeconds(6)
+                .splineTo(new Vector2d(-14, -30), Math.toRadians(-90))
+                .turn(Math.toRadians(180))
+                .waitSeconds(4)
+                .splineTo(new Vector2d(-40, -34), Math.toRadians(-150))
+                .waitSeconds(6)
+                .splineTo(new Vector2d(38, -32), Math.toRadians(-90))
+                .turn(Math.toRadians(180))*/
+
+
+                /*.lineToX(-20)
+                .turn(Math.toRadians(220))
+                .lineToY(-24)
+                .turn(Math.toRadians(90))
+                .lineToX(0)
+                .turn(Math.toRadians(90))
+                .lineToY(0)
+                .turn(Math.toRadians(90))
+                .build());
+
+
+       /* meepMeep.setBackground(MeepMeep.Background.FIELD_DECODE_JUICE_BLACK)
+                .setDarkMode(true)
+                .setBackgroundAlpha(0.95f)
+                .addEntity(myBot)
+                .start();
+    }
+} */
 
 
 /* Red SmallTriangleAuto right here:
@@ -124,6 +173,19 @@ public class MeepMeepTesting {
                                 .strafeToSplineHeading(new Vector2d(26.5,minYValue), Math.toRadians(90))
                                 .splineToConstantHeading(new Vector2d(35.5,maxYValue),Math.toRadians(90))
                                 .strafeToSplineHeading(new Vector2d(startPoseX,startPoseY),Math.toRadians(127))*/
+
+/* Blue auto    .strafeToLinearHeading(new Vector2d(-40, -34), Math.toRadians(230))
+                .waitSeconds(5)
+                .strafeToLinearHeading(new Vector2d(-13, -30), Math.toRadians(270))
+                .strafeToLinearHeading(new Vector2d(-13, -47),Math.toRadians(270))
+                .strafeToLinearHeading(new Vector2d(-40, -34), Math.toRadians(-130))
+                .waitSeconds(5)
+                .strafeToLinearHeading(new Vector2d(12, -30), Math.toRadians(270))
+                .strafeToLinearHeading(new Vector2d(12, -47),Math.toRadians(270))
+                .strafeToLinearHeading(new Vector2d(-40, -34), Math.toRadians(-130))
+                .waitSeconds(5)
+                .strafeToLinearHeading(new Vector2d(38, -32), Math.toRadians(270))
+                */
 
 
 
