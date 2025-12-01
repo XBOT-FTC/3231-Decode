@@ -7,13 +7,20 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
+import org.firstinspires.ftc.teamcode.Blocker;
+import org.firstinspires.ftc.teamcode.Intake;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
+import org.firstinspires.ftc.teamcode.Shooter;
 
 @Autonomous(name = "RedMainAuto", group = "Autonomous")
 public class MainAuto extends LinearOpMode {
 
+    Blocker blocker;
+    Shooter shooter;
+    Intake intake;
     double startPoseX = -56; //SmallTriangleAuto = 58
     double startPoseY = 45; //SmallTriangleAuto = 0
     double minYValue = 31;
@@ -21,6 +28,12 @@ public class MainAuto extends LinearOpMode {
 
     @Override
     public void runOpMode(){
+
+        intake = new Intake(hardwareMap);
+        blocker = new Blocker(hardwareMap, telemetry, "Open");
+        shooter = new Shooter(hardwareMap,telemetry);
+
+
         Pose2d startingPose = new Pose2d(startPoseX, startPoseY, Math.toRadians(127));
 
         MecanumDrive drive = new MecanumDrive(hardwareMap, startingPose);
@@ -58,6 +71,8 @@ public class MainAuto extends LinearOpMode {
                 new SequentialAction(
                                 trajectoryAction
                         )
+
+                blocker
 //                        Example
 //                        trajectoryActionChosen,
 //                        lift.liftUp(),
