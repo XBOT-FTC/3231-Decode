@@ -108,7 +108,7 @@ public class BackupShoot extends LinearOpMode {
         }
         shooter.setMotorPower(0.7);
         moveStop();
-        moveLinear(.3,2000, "ackward");
+        moveLinear(.3,2000, "Backward");
         moveStop();
         intake.setCollectBalls();
         sleep(5000);
