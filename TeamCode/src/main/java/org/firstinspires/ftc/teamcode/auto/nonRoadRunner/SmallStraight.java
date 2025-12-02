@@ -42,9 +42,9 @@ import org.firstinspires.ftc.teamcode.Constants;
  * the autonomous or the teleop period of an Fh * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="RedEmergencyAutoNonRR", group="Autonomous")
+@Autonomous(name="SmallStraight", group="Autonomous")
 //@Disabled
-public class RedEmergencyAutoNonRR extends LinearOpMode {
+public class SmallStraight extends LinearOpMode {
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();

@@ -25,6 +25,15 @@ public class Intake {
         }
     }
 
+    public void setCollectBalls() {
+        this.intakeMotor.setPower(1);
+    }
+
+    public void setStopCollecting() {
+        this.intakeMotor.setPower(0);
+    }
+
+
     public double getIntakePower() {
         return intakeMotor.getPower();
     }

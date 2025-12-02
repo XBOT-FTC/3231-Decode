@@ -13,8 +13,8 @@ public class MecanumTeleOp_3231 extends LinearOpMode {
         Shooter shooter = new Shooter(hardwareMap, telemetry);
         // ColorSensing colorSensor = new ColorSensing(hardwareMap, telemetry);
         Intake intake = new Intake(hardwareMap);
-        Blocker2 leftblocker = new Blocker2(hardwareMap, telemetry, "left");
-        Blocker2 rightblocker = new Blocker2(hardwareMap, telemetry, "right");
+        Blocker leftblocker = new Blocker(hardwareMap, telemetry, "left");
+        Blocker rightblocker = new Blocker(hardwareMap, telemetry, "right");
         waitForStart();
 
         if (isStopRequested()) return;

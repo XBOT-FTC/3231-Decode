@@ -8,10 +8,10 @@ public class Blocker {
     Servo blockerServo = null;
     boolean leftBumperPressed;
     boolean rightBumperPressed;
-    double leftBlockerClosePosition = 0.87;
-    double leftBlockerOpenPosition = 0.78;
-    double rightBlockerClosePosition = 0.58;
-    double rightBlockerOpenPosition = 0.72;
+    double leftBlockerClosePosition = 0.4;
+    double leftBlockerOpenPosition = 0;
+    double rightBlockerClosePosition = 0.42;
+    double rightBlockerOpenPosition = 1;
     String direction;
 
     // Fix twitches
@@ -56,6 +56,16 @@ public class Blocker {
                 }
             }
             previousRightState = gamepad.right_bumper;
+        }
+
+        if (gamepad.left_trigger > 0) {
+            leftBlockerClosePosition = this.blockerServo.getPosition() + .1;
+            blockerServo.setPosition(leftBlockerClosePosition);
+        }
+
+        if (gamepad.right_trigger > 0) {
+            leftBlockerClosePosition = this.blockerServo.getPosition() - .1;
+            blockerServo.setPosition(leftBlockerClosePosition);
         }
     }
 
