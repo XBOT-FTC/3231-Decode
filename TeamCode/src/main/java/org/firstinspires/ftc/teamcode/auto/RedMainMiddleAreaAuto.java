@@ -18,14 +18,14 @@ public class RedMainMiddleAreaAuto extends LinearOpMode {
 
     @Override
     public void runOpMode(){
-        Pose2d startingPose = new Pose2d(-startPoseX, startPoseY, Math.toRadians(0));
+        Pose2d startingPose = new Pose2d(startPoseX, startPoseY, Math.toRadians(0));
 
         MecanumDrive drive = new MecanumDrive(hardwareMap, startingPose);
 
         Action trajectoryAction = drive.actionBuilder(startingPose)
                 .strafeToSplineHeading(new Vector2d(0,0),Math.toRadians(135))
 
-                .waitSeconds(6) //Replace this with shoot code
+                .waitSeconds(6) //Replace this with the shoot code
 
                 .strafeToSplineHeading(new Vector2d(-10,minYValue), Math.toRadians(90))
                 //Start intake
@@ -42,7 +42,7 @@ public class RedMainMiddleAreaAuto extends LinearOpMode {
                 .strafeToSplineHeading(new Vector2d(0,0),Math.toRadians(135))
                 //stop intake
                 .waitSeconds(6)
-                //Replace this shooter code
+                //Replace this with the shoot code
                 .build();
     }
 
