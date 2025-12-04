@@ -1,11 +1,8 @@
 package org.firstinspires.ftc.teamcode.auto;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
-import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -15,7 +12,7 @@ import org.firstinspires.ftc.teamcode.MecanumDrive;
 // properly due to damage or other problems with the robot. This auto moves the robot out of the starting
 // area to get the moving points.
 @Autonomous(name = "RedEmergencyAuto", group = "Autonomous")
-public class RedEmergencyAuto extends LinearOpMode {
+public class RedLeaveAuto extends LinearOpMode {
     double startPoseX = -56; //SmallTriangleAuto = 58
     double startPoseY = 45; //SmallTriangleAuto = 0
 
@@ -26,7 +23,7 @@ public class RedEmergencyAuto extends LinearOpMode {
         MecanumDrive drive = new MecanumDrive(hardwareMap, startingPose);
 
         Action trajectoryAction = drive.actionBuilder(startingPose)
-                .strafeToLinearHeading(new Vector2d(-24,48), Math.toRadians(127))
+                .lineToX(-23.2)
                 .build();
 
         // Initialization
