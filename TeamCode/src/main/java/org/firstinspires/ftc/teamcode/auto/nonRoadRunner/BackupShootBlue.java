@@ -120,10 +120,13 @@ public class BackupShootBlue extends LinearOpMode {
 
         shooter.setMotorPower(0.7);
         moveStop();
-        sleep(3000);
+        blockerLeft.open();
+        blockerRight.open();
         intake.setCollectBalls();
         sleep(2000);
         intake.setStopCollecting();
+        blockerLeft.close();
+        blockerRight.close();
 
         // Left:
         frontLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
