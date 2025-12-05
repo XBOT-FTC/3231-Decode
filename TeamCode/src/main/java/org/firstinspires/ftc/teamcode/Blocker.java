@@ -10,8 +10,8 @@ public class Blocker {
     boolean rightBumperPressed;
     double leftBlockerClosePosition = 0.4;
     double leftBlockerOpenPosition = 0;
-    double rightBlockerClosePosition = 0.42;
-    double rightBlockerOpenPosition = 1;
+    double rightBlockerClosePosition = 0.18;
+    double rightBlockerOpenPosition = 0.0;
     String direction;
 
     // Fix twitches

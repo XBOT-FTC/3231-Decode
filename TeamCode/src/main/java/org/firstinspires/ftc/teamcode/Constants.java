@@ -26,7 +26,7 @@ public class Constants {
     }
 
     // Starting Power
-    public static double shooterPower = .3;
+    public static double shooterPower = .6;
 
     // Color Sensor
     public static String getColorSensorName () { return "Test"; }

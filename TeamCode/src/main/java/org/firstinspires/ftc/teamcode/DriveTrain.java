@@ -37,8 +37,8 @@ public class DriveTrain {
 
 //        this.frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        this.frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        this.backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+//        this.frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+//        this.backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public void drive(Gamepad gamepad, Telemetry telemetry){
