@@ -34,6 +34,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.Blocker;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Intake;
 import org.firstinspires.ftc.teamcode.Shooter;
@@ -57,12 +58,21 @@ public class BackupShootBlue extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        Shooter shooter = new Shooter(hardwareMap, telemetry);
+        Intake intake = new Intake(hardwareMap);
+        Blocker blockerLeft = new Blocker(hardwareMap,telemetry,"left");
+        Blocker blockerRight = new Blocker(hardwareMap,telemetry,"right");
+
+
         frontLeftDrive  = hardwareMap.get(DcMotor.class, Constants.leftFrontDriveMotor()); //0
         frontRightDrive = hardwareMap.get(DcMotor.class, Constants.rightFrontDriveMotor()); //3
         backLeftDrive = hardwareMap.get(DcMotor.class, Constants.leftBackDriveMotor()); //1
         backRightDrive = hardwareMap.get(DcMotor.class, Constants.rightBackDriveMotor()); //2
 
         waitForStart();
+
+        blockerLeft.close();
+        blockerRight.close();
 
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -100,13 +110,14 @@ public class BackupShootBlue extends LinearOpMode {
         frontRightDrive.setPower(.5);
         frontLeftDrive.setPower(.5);
 
-        Shooter shooter = new Shooter(hardwareMap, telemetry);
-        Intake intake = new Intake(hardwareMap);
+
 
         while(frontLeftDrive.isBusy() && frontRightDrive.isBusy() && backLeftDrive.isBusy() && backRightDrive.isBusy()) {
             telemetry.addData("Positions", "frontLeft (%d), backLeft (%d), frontRight (%d), backRight (%d)", frontLeftDrive.getCurrentPosition(), frontRightDrive.getCurrentPosition(), backLeftDrive.getCurrentPosition(), backRightDrive.getCurrentPosition());
             telemetry.update();
         }
+
+
         shooter.setMotorPower(0.7);
         moveStop();
         sleep(3000);
