@@ -68,7 +68,7 @@ public class Shooter {
     }
 
     public void reverseMotor() {
-        this.shooterPower = this.shooterPower * -1;
+        this.shooterPower = -1;
         setMotorPower(this.shooterPower);
     }
 

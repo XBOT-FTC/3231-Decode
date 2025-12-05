@@ -35,6 +35,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Intake;
+import org.firstinspires.ftc.teamcode.Shooter;
 
 
 /*
@@ -42,9 +44,9 @@ import org.firstinspires.ftc.teamcode.Constants;
  * the autonomous or the teleop period of an Fh * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="RedEmergencyAutoNonRR", group="Autonomous")
+@Autonomous(name="BackupShootRed", group="Autonomous")
 //@Disabled
-public class RedEmergencyAutoNonRR extends LinearOpMode {
+public class BackupShootRed extends LinearOpMode {
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -82,10 +84,11 @@ public class RedEmergencyAutoNonRR extends LinearOpMode {
         double BLposition = backLeftDrive.getCurrentPosition();
         double BRposition = backRightDrive.getCurrentPosition();
 
-        backRightDrive.setTargetPosition(1000);
-        backLeftDrive.setTargetPosition(1000);
-        frontRightDrive.setTargetPosition(1000);
-        frontLeftDrive.setTargetPosition(1000);
+
+        backRightDrive.setTargetPosition(-2000);
+        backLeftDrive.setTargetPosition(-2000);
+        frontRightDrive.setTargetPosition(-2000);
+        frontLeftDrive.setTargetPosition(-2000);
 
         backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -97,16 +100,39 @@ public class RedEmergencyAutoNonRR extends LinearOpMode {
         frontRightDrive.setPower(.5);
         frontLeftDrive.setPower(.5);
 
-
+        Shooter shooter = new Shooter(hardwareMap, telemetry);
+        Intake intake = new Intake(hardwareMap);
 
         while(frontLeftDrive.isBusy() && frontRightDrive.isBusy() && backLeftDrive.isBusy() && backRightDrive.isBusy()) {
             telemetry.addData("Positions", "frontLeft (%d), backLeft (%d), frontRight (%d), backRight (%d)", frontLeftDrive.getCurrentPosition(), frontRightDrive.getCurrentPosition(), backLeftDrive.getCurrentPosition(), backRightDrive.getCurrentPosition());
             telemetry.update();
         }
+        shooter.setMotorPower(0.7);
         moveStop();
-        moveLinear(.3,2000, "forward");
-        moveStop();
+        sleep(3000);
+        intake.setCollectBalls();
+        sleep(2000);
+        intake.setStopCollecting();
 
+        // Left:
+        frontLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        backRightDrive.setTargetPosition(-1000);
+        backLeftDrive.setTargetPosition(1000);
+        frontRightDrive.setTargetPosition(1000);
+        frontLeftDrive.setTargetPosition(-1000);
+
+        moveLinear(1, 3000, "Left");
+
+        backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        sleep (2000);
 
 
 
