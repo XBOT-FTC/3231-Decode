@@ -108,12 +108,6 @@ public class MecanumTeleOp_3231 extends LinearOpMode {
                 telemetry.addData("x", tag.ftcPose.x);
                 telemetry.addData("y", tag.ftcPose.y);
                 telemetry.addData("z", tag.ftcPose.z);
-                telemetry.addData("elevation", tag.ftcPose.elevation);
-                telemetry.addData("roll", tag.ftcPose.roll);
-                telemetry.addData("range", tag.ftcPose.range);
-                telemetry.addData("bearing", tag.ftcPose.bearing);
-                telemetry.addData("yaw", tag.ftcPose.yaw);
-                telemetry.addData("elevation", tag.ftcPose.elevation);
             }
             //Telemetry for movement motors and shooters
             telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f)", driveTrain.getFrontLeftPower(), driveTrain.getFrontRightPower(), driveTrain.getBackLeftPower(), driveTrain.getBackRightPower());
