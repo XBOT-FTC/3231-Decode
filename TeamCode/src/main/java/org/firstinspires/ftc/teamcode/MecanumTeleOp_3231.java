@@ -1,20 +1,47 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.util.Size;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
-
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.vision.VisionPortal;
+import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
+import org.firstinspires.ftc.vision.apriltag.AprilTagLibrary;
+import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 @TeleOp(name = "2025TeleOp_3231", group="Linear OpMode")
 public class MecanumTeleOp_3231 extends LinearOpMode {
-
+    VisionPortal visionPortal;
     @Override
     public void runOpMode() throws InterruptedException {
+
         DriveTrain2 driveTrain = new DriveTrain2(hardwareMap, telemetry);
         Shooter shooter = new Shooter(hardwareMap, telemetry);
         // ColorSensing colorSensor = new ColorSensing(hardwareMap, telemetry);
         Intake intake = new Intake(hardwareMap);
         Blocker leftblocker = new Blocker(hardwareMap, telemetry, "left");
         Blocker rightblocker = new Blocker(hardwareMap, telemetry, "right");
+        AprilTagProcessor tagProcessor = new AprilTagProcessor.Builder()
+                .setDrawAxes(true)
+                .setDrawCubeProjection(true)
+                .setDrawTagID(true)
+                .setDrawTagOutline(true)
+                .build();
+
+        VisionPortal.Builder VisionPortalBuilder;
+        VisionPortalBuilder = new VisionPortal.Builder();
+
+        VisionPortalBuilder.addProcessor(tagProcessor);
+        VisionPortalBuilder.setCamera(hardwareMap.get(WebcamName.class, "webcam1"));
+        VisionPortalBuilder.setCameraResolution(new Size(640, 480));
+        VisionPortalBuilder.setStreamFormat(VisionPortal.StreamFormat.MJPEG);
+        VisionPortalBuilder.enableLiveView(true);
+        VisionPortalBuilder.setAutoStartStreamOnBuild(true);
+        VisionPortalBuilder.setShowStatsOverlay(true);
+
+        visionPortal = VisionPortalBuilder.build();
+
         waitForStart();
 
         if (isStopRequested()) return;
@@ -75,7 +102,19 @@ public class MecanumTeleOp_3231 extends LinearOpMode {
 
             intake.run(currentGamepad1);
            // colorSensor.updateTelemetry();
+            if (tagProcessor.getDetections().size() > 0){
+                AprilTagDetection tag = tagProcessor.getDetections().get(0);
 
+                telemetry.addData("x", tag.ftcPose.x);
+                telemetry.addData("y", tag.ftcPose.y);
+                telemetry.addData("z", tag.ftcPose.z);
+                telemetry.addData("elevation", tag.ftcPose.elevation);
+                telemetry.addData("roll", tag.ftcPose.roll);
+                telemetry.addData("range", tag.ftcPose.range);
+                telemetry.addData("bearing", tag.ftcPose.bearing);
+                telemetry.addData("yaw", tag.ftcPose.yaw);
+                telemetry.addData("elevation", tag.ftcPose.elevation);
+            }
             //Telemetry for movement motors and shooters
             telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f)", driveTrain.getFrontLeftPower(), driveTrain.getFrontRightPower(), driveTrain.getBackLeftPower(), driveTrain.getBackRightPower());
             telemetry.addData("shooter", "shooter(%.2f)", shooter.getShooterPower());
