@@ -46,8 +46,8 @@ public class DriveTrain2 {
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
         this.frontLeftPower = (y - x + rx) / denominator;
         this.backLeftPower = (y + x + rx) / denominator;
-        this.frontRightPower = (y - x - rx) / denominator;
-        this.backRightPower = (y + x - rx) / denominator;
+        this.frontRightPower = (y + x - rx) / denominator;
+        this.backRightPower = (y - x - rx) / denominator;
 
         frontLeftMotor.setPower(frontLeftPower);
         backLeftMotor.setPower(backLeftPower);
