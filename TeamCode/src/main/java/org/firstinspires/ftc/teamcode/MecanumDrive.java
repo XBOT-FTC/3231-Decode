@@ -1,13 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import static org.firstinspires.ftc.teamcode.Constants.axialGain3231;
-import static org.firstinspires.ftc.teamcode.Constants.axialVelGain3231;
-import static org.firstinspires.ftc.teamcode.Constants.headingGain3231;
-import static org.firstinspires.ftc.teamcode.Constants.headingVelGain3231;
-import static org.firstinspires.ftc.teamcode.Constants.ka3231;
-import static org.firstinspires.ftc.teamcode.Constants.lateralGain3231;
-import static org.firstinspires.ftc.teamcode.Constants.lateralVelGain3231;
-
 import androidx.annotation.NonNull;
 
 import com.acmerobotics.dashboard.canvas.Canvas;
@@ -61,45 +53,7 @@ import java.util.List;
 
 @Config
 public final class MecanumDrive {
-    public static class Params {
-        // IMU orientation
-        // TODO: fill in these values based on
-        //   see https://ftc-docs.firstinspires.org/en/latest/programming_resources/imu/imu.html?highlight=imu#physical-hub-mounting
-        public RevHubOrientationOnRobot.LogoFacingDirection logoFacingDirection =
-                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
-        public RevHubOrientationOnRobot.UsbFacingDirection usbFacingDirection =
-                RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD;
-
-        // drive model parameters
-        public double inPerTick = Constants.inPerTick3231;
-        public double lateralInPerTick = Constants.lateralInPerTick3231;
-        public double trackWidthTicks = Constants.trackWidth3231;
-
-        // feedforward parameters (in tick units)
-        public double kS = Constants.ks3231;
-        public double kV = Constants.kv3231;
-        public double kA = ka3231;
-
-        // path profile parameters (in inches)
-        public double maxWheelVel = 50;
-        public double minProfileAccel = -30;
-        public double maxProfileAccel = 50;
-
-        // turn profile parameters (in radians)
-        public double maxAngVel = Math.PI; // shared with path
-        public double maxAngAccel = Math.PI;
-
-        // path controller gains
-        public double axialGain = axialGain3231;
-        public double lateralGain = lateralGain3231;
-        public double headingGain = headingGain3231; // shared with turn
-
-        public double axialVelGain = axialVelGain3231;
-        public double lateralVelGain = lateralVelGain3231;
-        public double headingVelGain = headingVelGain3231; // shared with turn
-    }
-
-    public static Params PARAMS = new Params();
+    public static Constants.Params PARAMS = new Constants.Params();
 
     public final MecanumKinematics kinematics = new MecanumKinematics(
             PARAMS.inPerTick * PARAMS.trackWidthTicks, PARAMS.inPerTick / PARAMS.lateralInPerTick);

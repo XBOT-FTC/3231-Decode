@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+
 public class Constants {
 
     //Motor Constants
@@ -65,7 +67,42 @@ public class Constants {
 
     // Color Sensor
     public static String getColorSensorName () { return "Test"; }
+    public static class Params {
+        // IMU orientation
+        // TODO: fill in these values based on
+        //   see https://ftc-docs.firstinspires.org/en/latest/programming_resources/imu/imu.html?highlight=imu#physical-hub-mounting
+        public RevHubOrientationOnRobot.LogoFacingDirection logoFacingDirection =
+                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
+        public RevHubOrientationOnRobot.UsbFacingDirection usbFacingDirection =
+                RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD;
 
+        // drive model parameters
+        public double inPerTick = Constants.inPerTick3231;
+        public double lateralInPerTick = Constants.lateralInPerTick3231;
+        public double trackWidthTicks = Constants.trackWidth3231;
 
+        // feedforward parameters (in tick units)
+        public double kS = Constants.ks3231;
+        public double kV = Constants.kv3231;
+        public double kA = ka3231;
+
+        // path profile parameters (in inches)
+        public double maxWheelVel = 50;
+        public double minProfileAccel = -30;
+        public double maxProfileAccel = 50;
+
+        // turn profile parameters (in radians)
+        public double maxAngVel = Math.PI; // shared with path
+        public double maxAngAccel = Math.PI;
+
+        // path controller gains
+        public double axialGain = axialGain3231;
+        public double lateralGain = lateralGain3231;
+        public double headingGain = headingGain3231; // shared with turn
+
+        public double axialVelGain = axialVelGain3231;
+        public double lateralVelGain = lateralVelGain3231;
+        public double headingVelGain = headingVelGain3231; // shared with turn
+    }
 
 }

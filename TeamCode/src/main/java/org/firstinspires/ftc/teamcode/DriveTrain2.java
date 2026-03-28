@@ -34,6 +34,7 @@ public class DriveTrain2 {
         this.frontRightMotor = hardwareMap.dcMotor.get(Constants.rightFrontDriveMotor());
         this.backLeftMotor = hardwareMap.dcMotor.get(Constants.leftBackDriveMotor());
         this.backRightMotor = hardwareMap.dcMotor.get(Constants.rightBackDriveMotor());
+
         this.frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         this.backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
@@ -46,8 +47,8 @@ public class DriveTrain2 {
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
         this.frontLeftPower = (y - x + rx) / denominator;
         this.backLeftPower = (y + x + rx) / denominator;
-        this.frontRightPower = (y - x - rx) / denominator;
-        this.backRightPower = (y + x - rx) / denominator;
+        this.frontRightPower = (y + x - rx) / denominator;
+        this.backRightPower = (y - x - rx) / denominator;
 
         frontLeftMotor.setPower(frontLeftPower);
         backLeftMotor.setPower(backLeftPower);
