@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -30,21 +31,16 @@ public class DriveTrain2 {
         return this.backRightPower;
     }
     public DriveTrain2(HardwareMap hardwareMap, Telemetry telemetry) {
-        this.frontLeftMotor = hardwareMap.dcMotor.get(Constants.leftFrontDriveMotor());
+        this.frontLeftMotor  = hardwareMap.dcMotor.get(Constants.leftFrontDriveMotor());
         this.frontRightMotor = hardwareMap.dcMotor.get(Constants.rightFrontDriveMotor());
-        this.backLeftMotor = hardwareMap.dcMotor.get(Constants.leftBackDriveMotor());
-        this.backRightMotor = hardwareMap.dcMotor.get(Constants.rightBackDriveMotor());
+        this.backLeftMotor   = hardwareMap.dcMotor.get(Constants.leftBackDriveMotor());
+        this.backRightMotor  = hardwareMap.dcMotor.get(Constants.rightBackDriveMotor());
 
         this.frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         this.backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
-    public void drive(Gamepad gamepad, Telemetry telemetry){
-        double y = gamepad.left_stick_y;
-        double x = gamepad.left_stick_x * 1.1;
-        double rx = -gamepad.right_stick_x;
-
-        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
+    public void power(double x, double y, double rx, double denominator) {
         this.frontLeftPower = (y - x + rx) / denominator;
         this.backLeftPower = (y + x + rx) / denominator;
         this.frontRightPower = (y + x - rx) / denominator;
@@ -54,5 +50,18 @@ public class DriveTrain2 {
         backLeftMotor.setPower(backLeftPower);
         frontRightMotor.setPower(frontRightPower);
         backRightMotor.setPower(backRightPower);
+    }
+
+    public void power(double x, double y, double rx) {
+        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
+        power(x, y, rx, denominator);
+    }
+
+    public void drive(Gamepad gamepad, Telemetry telemetry){
+        double y = gamepad.left_stick_y;
+        double x = gamepad.left_stick_x * 1.1;
+        double rx = -gamepad.right_stick_x;
+
+        power(x, y, rx);
     }
 }
