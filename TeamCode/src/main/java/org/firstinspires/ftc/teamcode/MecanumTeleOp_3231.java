@@ -16,7 +16,7 @@ public class MecanumTeleOp_3231 extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        DriveTrain2 driveTrain = new DriveTrain2(hardwareMap, telemetry);
+        AutoturnDriveTrain driveTrain = new AutoturnDriveTrain(hardwareMap, telemetry);
         Shooter shooter = new Shooter(hardwareMap, telemetry);
         // ColorSensing colorSensor = new ColorSensing(hardwareMap, telemetry);
         Intake intake = new Intake(hardwareMap);
@@ -52,6 +52,7 @@ public class MecanumTeleOp_3231 extends LinearOpMode {
         Gamepad previousGamepad2 = new Gamepad();
 
         while (opModeIsActive()) {
+            driveTrain.updatePoseEstimate();
 
             // colorSensor.updateTelemetry();
             leftblocker.powerServo(currentGamepad2, telemetry);
@@ -72,6 +73,10 @@ public class MecanumTeleOp_3231 extends LinearOpMode {
 
             // Drivetrain code
             driveTrain.drive(currentGamepad1, telemetry);
+
+            if (currentGamepad2.left_bumper) {
+               driveTrain.lookAtAngle(0);
+            }
 
             //Shooting Code
             if (wasXPressed) {
@@ -101,7 +106,7 @@ public class MecanumTeleOp_3231 extends LinearOpMode {
             }
 
             intake.run(currentGamepad1);
-           // colorSensor.updateTelemetry();
+            // colorSensor.updateTelemetry();
             if (tagProcessor.getDetections().size() > 0){
                 AprilTagDetection tag = tagProcessor.getDetections().get(0);
 
@@ -109,6 +114,7 @@ public class MecanumTeleOp_3231 extends LinearOpMode {
                 telemetry.addData("y", tag.ftcPose.y);
                 telemetry.addData("z", tag.ftcPose.z);
             }
+
             //Telemetry for movement motors and shooters
             telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f)", driveTrain.getFrontLeftPower(), driveTrain.getFrontRightPower(), driveTrain.getBackLeftPower(), driveTrain.getBackRightPower());
             telemetry.addData("shooter", "shooter(%.2f)", shooter.getShooterPower());
