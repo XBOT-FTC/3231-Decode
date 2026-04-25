@@ -75,7 +75,7 @@ public class MecanumTeleOp_3231 extends LinearOpMode {
             driveTrain.drive(currentGamepad1, telemetry);
 
             if (currentGamepad2.left_bumper) {
-               driveTrain.lookAtAngle(0);
+                driveTrain.lookAtAngle(0);
             }
 
             //Shooting Code
@@ -107,19 +107,19 @@ public class MecanumTeleOp_3231 extends LinearOpMode {
 
             intake.run(currentGamepad1);
             // colorSensor.updateTelemetry();
-            if (tagProcessor.getDetections().size() > 0){
-                AprilTagDetection tag = tagProcessor.getDetections().get(0);
-
-                telemetry.addData("x", tag.ftcPose.x);
-                telemetry.addData("y", tag.ftcPose.y);
-                telemetry.addData("z", tag.ftcPose.z);
-            }
+//            if (tagProcessor.getDetections().size() > 0) {
+//                AprilTagDetection tag = tagProcessor.getDetections().get(0);
+//
+//                telemetry.addData("x", tag.ftcPose.x);
+//                telemetry.addData("y", tag.ftcPose.y);
+//                telemetry.addData("z", tag.ftcPose.z);
+//            }
 
             //Telemetry for movement motors and shooters
             telemetry.addData("motors", "frontLeft(%.2f) frontRight(%.2f) backLeft(%.2f) backRight(%.2f)", driveTrain.getFrontLeftPower(), driveTrain.getFrontRightPower(), driveTrain.getBackLeftPower(), driveTrain.getBackRightPower());
             telemetry.addData("shooter", "shooter(%.2f)", shooter.getShooterPower());
             telemetry.addData("shooter encoder", "shooter encoder (%.2f), ", shooter.shooterEncoderPosition());
-            telemetry.addData("intake","intake (%.2f)", intake.getIntakePower());
+            telemetry.addData("intake", "intake (%.2f)", intake.getIntakePower());
             telemetry.addData("Left Blocker", "left blocker position (%.2f), ", leftblocker.getServoPosition());
             telemetry.addData("Right Blocker", "right blocker position (%.2f), ", rightblocker.getServoPosition());
             telemetry.update();

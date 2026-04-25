@@ -81,11 +81,19 @@ public class AutoturnDriveTrain {
     }
 
     public void drive(Gamepad gamepad, Telemetry telemetry){
-        double y = gamepad.left_stick_y;
-        double x = gamepad.left_stick_x * 1.1;
-        double rx = -gamepad.right_stick_x;
+        double threshold = 0.1;
+        double y = applyDeadband(gamepad.left_stick_y, threshold);
+        double x = applyDeadband(gamepad.left_stick_x, threshold)* 1.1;
+        double rx = -applyDeadband(gamepad.right_stick_x, threshold);
 
         power(x, y, rx);
+    }
+
+    public double applyDeadband(double input, double threshold) {
+        if (Math.abs(input) < threshold) {
+            return 0.0;
+        }
+        return input;
     }
 
     public Pose2d getPoseEstimate() {
